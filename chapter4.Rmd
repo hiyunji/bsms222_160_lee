@@ -12,7 +12,7 @@ Up to now we have been manipulating vectors by reordering and subsetting them th
 We can load all the tidyverse packages at once by installing and loading the tidyverse package:
 
 ```{r}
-install.packages("tidyverse")
+install.packages("tidyverse",repos="http://cran.us.r-project.org")
 library(tidyverse)
 ```
 
@@ -311,8 +311,7 @@ mutate(murders,rate= total/population*100000,rank=rank(-rate)) %>% filter(region
 ```
 2. Reset `murders` to the original table by using `data(murders)`. Use a pipe to create a new data frame called `my_states` that considers only states in the Northeast or West which have a murder rate lower than 1, and contains only the state, rate and rank columns. The pipe should also have four components separated by three %>%. The code should look something like this:
 ```{r}
-#
-#my_states <- murders %>% mutate SOMETHING %>%filter SOMETHING %>%select SOMETHING
+##my_states <- murders %>% mutate SOMETHING %>%filter SOMETHING %>%select SOMETHING
 ```
 
 ```{r}
