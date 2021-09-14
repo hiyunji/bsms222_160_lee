@@ -14,7 +14,7 @@ We can load all the tidyverse packages at once by installing and loading the tid
 ```{r}
 install.packages("tidyverse",repos="http://cran.us.r-project.org")
 library(tidyverse)
-install.packages("pander")
+install.packages("pander",repos="http://cran.us.r-project.org")
 library(pander)
 ```
 
