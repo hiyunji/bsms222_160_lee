@@ -179,7 +179,7 @@ pre code {
 <pre><code>## package &#39;tidyverse&#39; successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\ddw20\AppData\Local\Temp\Rtmp0UJcbw\downloaded_packages</code></pre>
+##  C:\Users\ddw20\AppData\Local\Temp\RtmpW4WpgY\downloaded_packages</code></pre>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
 <pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
@@ -2352,69 +2352,2616 @@ filter(new_table, rate &lt;= 0.71)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Load the dplyr package and the murders dataset.</li>
 </ol>
-<pre class="r"><code>library(dplyr)
+<pre class="r"><code>install.packages(&quot;pander&quot;,repos=&quot;http://cran.us.r-project.org&quot;)</code></pre>
+<pre><code>## &#39;C:/Users/ddw20/Documents/R/win-library/4.1&#39;의 위치에 패키지(들)을 설치합니다.
+## (왜냐하면 &#39;lib&#39;가 지정되지 않았기 때문입니다)</code></pre>
+<pre><code>## package &#39;pander&#39; successfully unpacked and MD5 sums checked</code></pre>
+<pre><code>## Warning: cannot remove prior installation of package &#39;pander&#39;</code></pre>
+<pre><code>## Warning in file.copy(savedcopy, lib, recursive = TRUE): C:
+## \Users\ddw20\Documents\R\win-library\4.1\00LOCK\pander\libs\x64\pander.dll를 C:
+## \Users\ddw20\Documents\R\win-library\4.1\pander\libs\x64\pander.dll로 복사하는데
+## 문제가 발생했습니다: Permission denied</code></pre>
+<pre><code>## Warning: restored &#39;pander&#39;</code></pre>
+<pre><code>## 
+## The downloaded binary packages are in
+##  C:\Users\ddw20\AppData\Local\Temp\RtmpW4WpgY\downloaded_packages</code></pre>
+<pre class="r"><code>library(pander)
+library(dplyr)
 library(dslabs)
-data(murders)</code></pre>
+data(murders)
+pander(murders)</code></pre>
+<table style="width:92%;">
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+<col width="22%" />
+<col width="18%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">AL</td>
+<td align="center">South</td>
+<td align="center">4779736</td>
+<td align="center">135</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">AK</td>
+<td align="center">West</td>
+<td align="center">710231</td>
+<td align="center">19</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">AZ</td>
+<td align="center">West</td>
+<td align="center">6392017</td>
+<td align="center">232</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">AR</td>
+<td align="center">South</td>
+<td align="center">2915918</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">CA</td>
+<td align="center">West</td>
+<td align="center">37253956</td>
+<td align="center">1257</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">CO</td>
+<td align="center">West</td>
+<td align="center">5029196</td>
+<td align="center">65</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+<td align="center">Northeast</td>
+<td align="center">3574097</td>
+<td align="center">97</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">DE</td>
+<td align="center">South</td>
+<td align="center">897934</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+<td align="center">South</td>
+<td align="center">601723</td>
+<td align="center">99</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">FL</td>
+<td align="center">South</td>
+<td align="center">19687653</td>
+<td align="center">669</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">GA</td>
+<td align="center">South</td>
+<td align="center">9920000</td>
+<td align="center">376</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">HI</td>
+<td align="center">West</td>
+<td align="center">1360301</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">ID</td>
+<td align="center">West</td>
+<td align="center">1567582</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">IL</td>
+<td align="center">North Central</td>
+<td align="center">12830632</td>
+<td align="center">364</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">IN</td>
+<td align="center">North Central</td>
+<td align="center">6483802</td>
+<td align="center">142</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">IA</td>
+<td align="center">North Central</td>
+<td align="center">3046355</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">KS</td>
+<td align="center">North Central</td>
+<td align="center">2853118</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">KY</td>
+<td align="center">South</td>
+<td align="center">4339367</td>
+<td align="center">116</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+<td align="center">South</td>
+<td align="center">4533372</td>
+<td align="center">351</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+<td align="center">Northeast</td>
+<td align="center">1328361</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+<td align="center">South</td>
+<td align="center">5773552</td>
+<td align="center">293</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">MA</td>
+<td align="center">Northeast</td>
+<td align="center">6547629</td>
+<td align="center">118</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">MI</td>
+<td align="center">North Central</td>
+<td align="center">9883640</td>
+<td align="center">413</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">MN</td>
+<td align="center">North Central</td>
+<td align="center">5303925</td>
+<td align="center">53</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">MS</td>
+<td align="center">South</td>
+<td align="center">2967297</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+<td align="center">North Central</td>
+<td align="center">5988927</td>
+<td align="center">321</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">MT</td>
+<td align="center">West</td>
+<td align="center">989415</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">NE</td>
+<td align="center">North Central</td>
+<td align="center">1826341</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">NV</td>
+<td align="center">West</td>
+<td align="center">2700551</td>
+<td align="center">84</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+<td align="center">Northeast</td>
+<td align="center">1316470</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">NJ</td>
+<td align="center">Northeast</td>
+<td align="center">8791894</td>
+<td align="center">246</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">NM</td>
+<td align="center">West</td>
+<td align="center">2059179</td>
+<td align="center">67</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">NC</td>
+<td align="center">South</td>
+<td align="center">9535483</td>
+<td align="center">286</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">ND</td>
+<td align="center">North Central</td>
+<td align="center">672591</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">OH</td>
+<td align="center">North Central</td>
+<td align="center">11536504</td>
+<td align="center">310</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">OK</td>
+<td align="center">South</td>
+<td align="center">3751351</td>
+<td align="center">111</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">OR</td>
+<td align="center">West</td>
+<td align="center">3831074</td>
+<td align="center">36</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">PA</td>
+<td align="center">Northeast</td>
+<td align="center">12702379</td>
+<td align="center">457</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+<td align="center">Northeast</td>
+<td align="center">1052567</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+<td align="center">South</td>
+<td align="center">4625364</td>
+<td align="center">207</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">SD</td>
+<td align="center">North Central</td>
+<td align="center">814180</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">TN</td>
+<td align="center">South</td>
+<td align="center">6346105</td>
+<td align="center">219</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+<td align="center">South</td>
+<td align="center">25145561</td>
+<td align="center">805</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">UT</td>
+<td align="center">West</td>
+<td align="center">2763885</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+<td align="center">Northeast</td>
+<td align="center">625741</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">VA</td>
+<td align="center">South</td>
+<td align="center">8001024</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">WA</td>
+<td align="center">West</td>
+<td align="center">6724540</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">WV</td>
+<td align="center">South</td>
+<td align="center">1852994</td>
+<td align="center">27</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">WI</td>
+<td align="center">North Central</td>
+<td align="center">5686986</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">WY</td>
+<td align="center">West</td>
+<td align="center">563626</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
 <p>You can add columns using the dplyr function <code>mutate</code>. This function is aware of the column names and inside the function you can call them unquoted:</p>
 <pre class="r"><code>murders &lt;- mutate(murders, population_in_millions = population / 10^6)
-murders</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"4.779736"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"0.710231"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"6.392017"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"2.915918"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"37.253956"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"5.029196"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"3.574097"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38","6":"0.897934"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"0.601723"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669","6":"19.687653"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376","6":"9.920000"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"1.360301"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"1.567582"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364","6":"12.830632"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142","6":"6.483802"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"3.046355"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63","6":"2.853118"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116","6":"4.339367"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"4.533372"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"1.328361"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.773552"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"6.547629"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413","6":"9.883640"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53","6":"5.303925"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120","6":"2.967297"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.988927"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12","6":"0.989415"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32","6":"1.826341"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84","6":"2.700551"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"1.316470"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246","6":"8.791894"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67","6":"2.059179"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"19.378102"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286","6":"9.535483"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.672591"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310","6":"11.536504"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111","6":"3.751351"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36","6":"3.831074"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457","6":"12.702379"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.052567"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.625364"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.814180"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219","6":"6.346105"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"25.145561"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22","6":"2.763885"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.625741"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250","6":"8.001024"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93","6":"6.724540"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27","6":"1.852994"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97","6":"5.686986"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.563626"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(murders)</code></pre>
+<table style="width:92%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+<col width="22%" />
+<col width="18%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">AL</td>
+<td align="center">South</td>
+<td align="center">4779736</td>
+<td align="center">135</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">AK</td>
+<td align="center">West</td>
+<td align="center">710231</td>
+<td align="center">19</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">AZ</td>
+<td align="center">West</td>
+<td align="center">6392017</td>
+<td align="center">232</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">AR</td>
+<td align="center">South</td>
+<td align="center">2915918</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">CA</td>
+<td align="center">West</td>
+<td align="center">37253956</td>
+<td align="center">1257</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">CO</td>
+<td align="center">West</td>
+<td align="center">5029196</td>
+<td align="center">65</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+<td align="center">Northeast</td>
+<td align="center">3574097</td>
+<td align="center">97</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">DE</td>
+<td align="center">South</td>
+<td align="center">897934</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+<td align="center">South</td>
+<td align="center">601723</td>
+<td align="center">99</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">FL</td>
+<td align="center">South</td>
+<td align="center">19687653</td>
+<td align="center">669</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">GA</td>
+<td align="center">South</td>
+<td align="center">9920000</td>
+<td align="center">376</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">HI</td>
+<td align="center">West</td>
+<td align="center">1360301</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">ID</td>
+<td align="center">West</td>
+<td align="center">1567582</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">IL</td>
+<td align="center">North Central</td>
+<td align="center">12830632</td>
+<td align="center">364</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">IN</td>
+<td align="center">North Central</td>
+<td align="center">6483802</td>
+<td align="center">142</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">IA</td>
+<td align="center">North Central</td>
+<td align="center">3046355</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">KS</td>
+<td align="center">North Central</td>
+<td align="center">2853118</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">KY</td>
+<td align="center">South</td>
+<td align="center">4339367</td>
+<td align="center">116</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+<td align="center">South</td>
+<td align="center">4533372</td>
+<td align="center">351</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+<td align="center">Northeast</td>
+<td align="center">1328361</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+<td align="center">South</td>
+<td align="center">5773552</td>
+<td align="center">293</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">MA</td>
+<td align="center">Northeast</td>
+<td align="center">6547629</td>
+<td align="center">118</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">MI</td>
+<td align="center">North Central</td>
+<td align="center">9883640</td>
+<td align="center">413</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">MN</td>
+<td align="center">North Central</td>
+<td align="center">5303925</td>
+<td align="center">53</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">MS</td>
+<td align="center">South</td>
+<td align="center">2967297</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+<td align="center">North Central</td>
+<td align="center">5988927</td>
+<td align="center">321</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">MT</td>
+<td align="center">West</td>
+<td align="center">989415</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">NE</td>
+<td align="center">North Central</td>
+<td align="center">1826341</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">NV</td>
+<td align="center">West</td>
+<td align="center">2700551</td>
+<td align="center">84</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+<td align="center">Northeast</td>
+<td align="center">1316470</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">NJ</td>
+<td align="center">Northeast</td>
+<td align="center">8791894</td>
+<td align="center">246</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">NM</td>
+<td align="center">West</td>
+<td align="center">2059179</td>
+<td align="center">67</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">NC</td>
+<td align="center">South</td>
+<td align="center">9535483</td>
+<td align="center">286</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">ND</td>
+<td align="center">North Central</td>
+<td align="center">672591</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">OH</td>
+<td align="center">North Central</td>
+<td align="center">11536504</td>
+<td align="center">310</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">OK</td>
+<td align="center">South</td>
+<td align="center">3751351</td>
+<td align="center">111</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">OR</td>
+<td align="center">West</td>
+<td align="center">3831074</td>
+<td align="center">36</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">PA</td>
+<td align="center">Northeast</td>
+<td align="center">12702379</td>
+<td align="center">457</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+<td align="center">Northeast</td>
+<td align="center">1052567</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+<td align="center">South</td>
+<td align="center">4625364</td>
+<td align="center">207</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">SD</td>
+<td align="center">North Central</td>
+<td align="center">814180</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">TN</td>
+<td align="center">South</td>
+<td align="center">6346105</td>
+<td align="center">219</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+<td align="center">South</td>
+<td align="center">25145561</td>
+<td align="center">805</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">UT</td>
+<td align="center">West</td>
+<td align="center">2763885</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+<td align="center">Northeast</td>
+<td align="center">625741</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">VA</td>
+<td align="center">South</td>
+<td align="center">8001024</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">WA</td>
+<td align="center">West</td>
+<td align="center">6724540</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">WV</td>
+<td align="center">South</td>
+<td align="center">1852994</td>
+<td align="center">27</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">WI</td>
+<td align="center">North Central</td>
+<td align="center">5686986</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">WY</td>
+<td align="center">West</td>
+<td align="center">563626</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+<table style="width:35%;">
+<colgroup>
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">population_in_millions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4.78</td>
+</tr>
+<tr class="even">
+<td align="center">0.7102</td>
+</tr>
+<tr class="odd">
+<td align="center">6.392</td>
+</tr>
+<tr class="even">
+<td align="center">2.916</td>
+</tr>
+<tr class="odd">
+<td align="center">37.25</td>
+</tr>
+<tr class="even">
+<td align="center">5.029</td>
+</tr>
+<tr class="odd">
+<td align="center">3.574</td>
+</tr>
+<tr class="even">
+<td align="center">0.8979</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6017</td>
+</tr>
+<tr class="even">
+<td align="center">19.69</td>
+</tr>
+<tr class="odd">
+<td align="center">9.92</td>
+</tr>
+<tr class="even">
+<td align="center">1.36</td>
+</tr>
+<tr class="odd">
+<td align="center">1.568</td>
+</tr>
+<tr class="even">
+<td align="center">12.83</td>
+</tr>
+<tr class="odd">
+<td align="center">6.484</td>
+</tr>
+<tr class="even">
+<td align="center">3.046</td>
+</tr>
+<tr class="odd">
+<td align="center">2.853</td>
+</tr>
+<tr class="even">
+<td align="center">4.339</td>
+</tr>
+<tr class="odd">
+<td align="center">4.533</td>
+</tr>
+<tr class="even">
+<td align="center">1.328</td>
+</tr>
+<tr class="odd">
+<td align="center">5.774</td>
+</tr>
+<tr class="even">
+<td align="center">6.548</td>
+</tr>
+<tr class="odd">
+<td align="center">9.884</td>
+</tr>
+<tr class="even">
+<td align="center">5.304</td>
+</tr>
+<tr class="odd">
+<td align="center">2.967</td>
+</tr>
+<tr class="even">
+<td align="center">5.989</td>
+</tr>
+<tr class="odd">
+<td align="center">0.9894</td>
+</tr>
+<tr class="even">
+<td align="center">1.826</td>
+</tr>
+<tr class="odd">
+<td align="center">2.701</td>
+</tr>
+<tr class="even">
+<td align="center">1.316</td>
+</tr>
+<tr class="odd">
+<td align="center">8.792</td>
+</tr>
+<tr class="even">
+<td align="center">2.059</td>
+</tr>
+<tr class="odd">
+<td align="center">19.38</td>
+</tr>
+<tr class="even">
+<td align="center">9.535</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6726</td>
+</tr>
+<tr class="even">
+<td align="center">11.54</td>
+</tr>
+<tr class="odd">
+<td align="center">3.751</td>
+</tr>
+<tr class="even">
+<td align="center">3.831</td>
+</tr>
+<tr class="odd">
+<td align="center">12.7</td>
+</tr>
+<tr class="even">
+<td align="center">1.053</td>
+</tr>
+<tr class="odd">
+<td align="center">4.625</td>
+</tr>
+<tr class="even">
+<td align="center">0.8142</td>
+</tr>
+<tr class="odd">
+<td align="center">6.346</td>
+</tr>
+<tr class="even">
+<td align="center">25.15</td>
+</tr>
+<tr class="odd">
+<td align="center">2.764</td>
+</tr>
+<tr class="even">
+<td align="center">0.6257</td>
+</tr>
+<tr class="odd">
+<td align="center">8.001</td>
+</tr>
+<tr class="even">
+<td align="center">6.725</td>
+</tr>
+<tr class="odd">
+<td align="center">1.853</td>
+</tr>
+<tr class="even">
+<td align="center">5.687</td>
+</tr>
+<tr class="odd">
+<td align="center">0.5636</td>
+</tr>
+</tbody>
+</table>
 <p>We can write <code>population</code> rather than <code>murders$population</code>. The function<code>mutate</code> knows we are grabbing columns from <code>murders</code>.</p>
 <p>Use the function <code>mutate</code> to add a murders column named <code>rate</code> with the per 100,000 murder rate as in the example code above. Make sure you redefine <code>murders</code> as done in the example code above ( murders &lt;- [your code]) so we can keep using this variable.</p>
 <pre class="r"><code>murders&lt;-mutate(murders, rate=total/population*100000)
-murders</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"4.779736","7":"2.8244238"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"0.710231","7":"2.6751860"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"6.392017","7":"3.6295273"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"2.915918","7":"3.1893901"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"37.253956","7":"3.3741383"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"5.029196","7":"1.2924531"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"3.574097","7":"2.7139722"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38","6":"0.897934","7":"4.2319369"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"0.601723","7":"16.4527532"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669","6":"19.687653","7":"3.3980688"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376","6":"9.920000","7":"3.7903226"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"1.360301","7":"0.5145920"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"1.567582","7":"0.7655102"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364","6":"12.830632","7":"2.8369608"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142","6":"6.483802","7":"2.1900730"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"3.046355","7":"0.6893484"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63","6":"2.853118","7":"2.2081106"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116","6":"4.339367","7":"2.6732010"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"4.533372","7":"7.7425810"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"1.328361","7":"0.8280881"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.773552","7":"5.0748655"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"6.547629","7":"1.8021791"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413","6":"9.883640","7":"4.1786225"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53","6":"5.303925","7":"0.9992600"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120","6":"2.967297","7":"4.0440846"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.988927","7":"5.3598917"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12","6":"0.989415","7":"1.2128379"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32","6":"1.826341","7":"1.7521372"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84","6":"2.700551","7":"3.1104763"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"1.316470","7":"0.3798036"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246","6":"8.791894","7":"2.7980319"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67","6":"2.059179","7":"3.2537239"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"19.378102","7":"2.6679599"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286","6":"9.535483","7":"2.9993237"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.672591","7":"0.5947151"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310","6":"11.536504","7":"2.6871225"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111","6":"3.751351","7":"2.9589340"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36","6":"3.831074","7":"0.9396843"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457","6":"12.702379","7":"3.5977513"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.052567","7":"1.5200933"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.625364","7":"4.4753235"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.814180","7":"0.9825837"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219","6":"6.346105","7":"3.4509357"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"25.145561","7":"3.2013603"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22","6":"2.763885","7":"0.7959810"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.625741","7":"0.3196211"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250","6":"8.001024","7":"3.1246001"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93","6":"6.724540","7":"1.3829942"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27","6":"1.852994","7":"1.4571013"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97","6":"5.686986","7":"1.7056487"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.563626","7":"0.8871131"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(murders)</code></pre>
+<table style="width:92%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+<col width="22%" />
+<col width="18%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">AL</td>
+<td align="center">South</td>
+<td align="center">4779736</td>
+<td align="center">135</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">AK</td>
+<td align="center">West</td>
+<td align="center">710231</td>
+<td align="center">19</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">AZ</td>
+<td align="center">West</td>
+<td align="center">6392017</td>
+<td align="center">232</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">AR</td>
+<td align="center">South</td>
+<td align="center">2915918</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">CA</td>
+<td align="center">West</td>
+<td align="center">37253956</td>
+<td align="center">1257</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">CO</td>
+<td align="center">West</td>
+<td align="center">5029196</td>
+<td align="center">65</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+<td align="center">Northeast</td>
+<td align="center">3574097</td>
+<td align="center">97</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">DE</td>
+<td align="center">South</td>
+<td align="center">897934</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+<td align="center">South</td>
+<td align="center">601723</td>
+<td align="center">99</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">FL</td>
+<td align="center">South</td>
+<td align="center">19687653</td>
+<td align="center">669</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">GA</td>
+<td align="center">South</td>
+<td align="center">9920000</td>
+<td align="center">376</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">HI</td>
+<td align="center">West</td>
+<td align="center">1360301</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">ID</td>
+<td align="center">West</td>
+<td align="center">1567582</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">IL</td>
+<td align="center">North Central</td>
+<td align="center">12830632</td>
+<td align="center">364</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">IN</td>
+<td align="center">North Central</td>
+<td align="center">6483802</td>
+<td align="center">142</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">IA</td>
+<td align="center">North Central</td>
+<td align="center">3046355</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">KS</td>
+<td align="center">North Central</td>
+<td align="center">2853118</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">KY</td>
+<td align="center">South</td>
+<td align="center">4339367</td>
+<td align="center">116</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+<td align="center">South</td>
+<td align="center">4533372</td>
+<td align="center">351</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+<td align="center">Northeast</td>
+<td align="center">1328361</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+<td align="center">South</td>
+<td align="center">5773552</td>
+<td align="center">293</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">MA</td>
+<td align="center">Northeast</td>
+<td align="center">6547629</td>
+<td align="center">118</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">MI</td>
+<td align="center">North Central</td>
+<td align="center">9883640</td>
+<td align="center">413</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">MN</td>
+<td align="center">North Central</td>
+<td align="center">5303925</td>
+<td align="center">53</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">MS</td>
+<td align="center">South</td>
+<td align="center">2967297</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+<td align="center">North Central</td>
+<td align="center">5988927</td>
+<td align="center">321</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">MT</td>
+<td align="center">West</td>
+<td align="center">989415</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">NE</td>
+<td align="center">North Central</td>
+<td align="center">1826341</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">NV</td>
+<td align="center">West</td>
+<td align="center">2700551</td>
+<td align="center">84</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+<td align="center">Northeast</td>
+<td align="center">1316470</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">NJ</td>
+<td align="center">Northeast</td>
+<td align="center">8791894</td>
+<td align="center">246</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">NM</td>
+<td align="center">West</td>
+<td align="center">2059179</td>
+<td align="center">67</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">NC</td>
+<td align="center">South</td>
+<td align="center">9535483</td>
+<td align="center">286</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">ND</td>
+<td align="center">North Central</td>
+<td align="center">672591</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">OH</td>
+<td align="center">North Central</td>
+<td align="center">11536504</td>
+<td align="center">310</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">OK</td>
+<td align="center">South</td>
+<td align="center">3751351</td>
+<td align="center">111</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">OR</td>
+<td align="center">West</td>
+<td align="center">3831074</td>
+<td align="center">36</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">PA</td>
+<td align="center">Northeast</td>
+<td align="center">12702379</td>
+<td align="center">457</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+<td align="center">Northeast</td>
+<td align="center">1052567</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+<td align="center">South</td>
+<td align="center">4625364</td>
+<td align="center">207</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">SD</td>
+<td align="center">North Central</td>
+<td align="center">814180</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">TN</td>
+<td align="center">South</td>
+<td align="center">6346105</td>
+<td align="center">219</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+<td align="center">South</td>
+<td align="center">25145561</td>
+<td align="center">805</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">UT</td>
+<td align="center">West</td>
+<td align="center">2763885</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+<td align="center">Northeast</td>
+<td align="center">625741</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">VA</td>
+<td align="center">South</td>
+<td align="center">8001024</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">WA</td>
+<td align="center">West</td>
+<td align="center">6724540</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">WV</td>
+<td align="center">South</td>
+<td align="center">1852994</td>
+<td align="center">27</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">WI</td>
+<td align="center">North Central</td>
+<td align="center">5686986</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">WY</td>
+<td align="center">West</td>
+<td align="center">563626</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+<table style="width:47%;">
+<colgroup>
+<col width="34%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">population_in_millions</th>
+<th align="center">rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4.78</td>
+<td align="center">2.824</td>
+</tr>
+<tr class="even">
+<td align="center">0.7102</td>
+<td align="center">2.675</td>
+</tr>
+<tr class="odd">
+<td align="center">6.392</td>
+<td align="center">3.63</td>
+</tr>
+<tr class="even">
+<td align="center">2.916</td>
+<td align="center">3.189</td>
+</tr>
+<tr class="odd">
+<td align="center">37.25</td>
+<td align="center">3.374</td>
+</tr>
+<tr class="even">
+<td align="center">5.029</td>
+<td align="center">1.292</td>
+</tr>
+<tr class="odd">
+<td align="center">3.574</td>
+<td align="center">2.714</td>
+</tr>
+<tr class="even">
+<td align="center">0.8979</td>
+<td align="center">4.232</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6017</td>
+<td align="center">16.45</td>
+</tr>
+<tr class="even">
+<td align="center">19.69</td>
+<td align="center">3.398</td>
+</tr>
+<tr class="odd">
+<td align="center">9.92</td>
+<td align="center">3.79</td>
+</tr>
+<tr class="even">
+<td align="center">1.36</td>
+<td align="center">0.5146</td>
+</tr>
+<tr class="odd">
+<td align="center">1.568</td>
+<td align="center">0.7655</td>
+</tr>
+<tr class="even">
+<td align="center">12.83</td>
+<td align="center">2.837</td>
+</tr>
+<tr class="odd">
+<td align="center">6.484</td>
+<td align="center">2.19</td>
+</tr>
+<tr class="even">
+<td align="center">3.046</td>
+<td align="center">0.6893</td>
+</tr>
+<tr class="odd">
+<td align="center">2.853</td>
+<td align="center">2.208</td>
+</tr>
+<tr class="even">
+<td align="center">4.339</td>
+<td align="center">2.673</td>
+</tr>
+<tr class="odd">
+<td align="center">4.533</td>
+<td align="center">7.743</td>
+</tr>
+<tr class="even">
+<td align="center">1.328</td>
+<td align="center">0.8281</td>
+</tr>
+<tr class="odd">
+<td align="center">5.774</td>
+<td align="center">5.075</td>
+</tr>
+<tr class="even">
+<td align="center">6.548</td>
+<td align="center">1.802</td>
+</tr>
+<tr class="odd">
+<td align="center">9.884</td>
+<td align="center">4.179</td>
+</tr>
+<tr class="even">
+<td align="center">5.304</td>
+<td align="center">0.9993</td>
+</tr>
+<tr class="odd">
+<td align="center">2.967</td>
+<td align="center">4.044</td>
+</tr>
+<tr class="even">
+<td align="center">5.989</td>
+<td align="center">5.36</td>
+</tr>
+<tr class="odd">
+<td align="center">0.9894</td>
+<td align="center">1.213</td>
+</tr>
+<tr class="even">
+<td align="center">1.826</td>
+<td align="center">1.752</td>
+</tr>
+<tr class="odd">
+<td align="center">2.701</td>
+<td align="center">3.11</td>
+</tr>
+<tr class="even">
+<td align="center">1.316</td>
+<td align="center">0.3798</td>
+</tr>
+<tr class="odd">
+<td align="center">8.792</td>
+<td align="center">2.798</td>
+</tr>
+<tr class="even">
+<td align="center">2.059</td>
+<td align="center">3.254</td>
+</tr>
+<tr class="odd">
+<td align="center">19.38</td>
+<td align="center">2.668</td>
+</tr>
+<tr class="even">
+<td align="center">9.535</td>
+<td align="center">2.999</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6726</td>
+<td align="center">0.5947</td>
+</tr>
+<tr class="even">
+<td align="center">11.54</td>
+<td align="center">2.687</td>
+</tr>
+<tr class="odd">
+<td align="center">3.751</td>
+<td align="center">2.959</td>
+</tr>
+<tr class="even">
+<td align="center">3.831</td>
+<td align="center">0.9397</td>
+</tr>
+<tr class="odd">
+<td align="center">12.7</td>
+<td align="center">3.598</td>
+</tr>
+<tr class="even">
+<td align="center">1.053</td>
+<td align="center">1.52</td>
+</tr>
+<tr class="odd">
+<td align="center">4.625</td>
+<td align="center">4.475</td>
+</tr>
+<tr class="even">
+<td align="center">0.8142</td>
+<td align="center">0.9826</td>
+</tr>
+<tr class="odd">
+<td align="center">6.346</td>
+<td align="center">3.451</td>
+</tr>
+<tr class="even">
+<td align="center">25.15</td>
+<td align="center">3.201</td>
+</tr>
+<tr class="odd">
+<td align="center">2.764</td>
+<td align="center">0.796</td>
+</tr>
+<tr class="even">
+<td align="center">0.6257</td>
+<td align="center">0.3196</td>
+</tr>
+<tr class="odd">
+<td align="center">8.001</td>
+<td align="center">3.125</td>
+</tr>
+<tr class="even">
+<td align="center">6.725</td>
+<td align="center">1.383</td>
+</tr>
+<tr class="odd">
+<td align="center">1.853</td>
+<td align="center">1.457</td>
+</tr>
+<tr class="even">
+<td align="center">5.687</td>
+<td align="center">1.706</td>
+</tr>
+<tr class="odd">
+<td align="center">0.5636</td>
+<td align="center">0.8871</td>
+</tr>
+</tbody>
+</table>
 <ol start="2" style="list-style-type: decimal">
 <li>If <code>rank(x)</code> gives you the ranks of <code>x</code> from lowest to highest, <code>rank(-x)</code> gives you the ranks from highest to lowest. Use the function <code>mutate</code> to add a column <code>rank</code> containing the rank, from highest to lowest murder rate. Make sure you redefine <code>murders</code> so we can keep using this variable.</li>
 </ol>
 <pre class="r"><code>murders&lt;-mutate(murders,rank=rank(-rate))
-murders</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"AL","3":"South","4":"4779736","5":"135","6":"4.779736","7":"2.8244238","8":"23"},{"1":"Alaska","2":"AK","3":"West","4":"710231","5":"19","6":"0.710231","7":"2.6751860","8":"27"},{"1":"Arizona","2":"AZ","3":"West","4":"6392017","5":"232","6":"6.392017","7":"3.6295273","8":"10"},{"1":"Arkansas","2":"AR","3":"South","4":"2915918","5":"93","6":"2.915918","7":"3.1893901","8":"17"},{"1":"California","2":"CA","3":"West","4":"37253956","5":"1257","6":"37.253956","7":"3.3741383","8":"14"},{"1":"Colorado","2":"CO","3":"West","4":"5029196","5":"65","6":"5.029196","7":"1.2924531","8":"38"},{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"3.574097","7":"2.7139722","8":"25"},{"1":"Delaware","2":"DE","3":"South","4":"897934","5":"38","6":"0.897934","7":"4.2319369","8":"6"},{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"0.601723","7":"16.4527532","8":"1"},{"1":"Florida","2":"FL","3":"South","4":"19687653","5":"669","6":"19.687653","7":"3.3980688","8":"13"},{"1":"Georgia","2":"GA","3":"South","4":"9920000","5":"376","6":"9.920000","7":"3.7903226","8":"9"},{"1":"Hawaii","2":"HI","3":"West","4":"1360301","5":"7","6":"1.360301","7":"0.5145920","8":"49"},{"1":"Idaho","2":"ID","3":"West","4":"1567582","5":"12","6":"1.567582","7":"0.7655102","8":"46"},{"1":"Illinois","2":"IL","3":"North Central","4":"12830632","5":"364","6":"12.830632","7":"2.8369608","8":"22"},{"1":"Indiana","2":"IN","3":"North Central","4":"6483802","5":"142","6":"6.483802","7":"2.1900730","8":"31"},{"1":"Iowa","2":"IA","3":"North Central","4":"3046355","5":"21","6":"3.046355","7":"0.6893484","8":"47"},{"1":"Kansas","2":"KS","3":"North Central","4":"2853118","5":"63","6":"2.853118","7":"2.2081106","8":"30"},{"1":"Kentucky","2":"KY","3":"South","4":"4339367","5":"116","6":"4.339367","7":"2.6732010","8":"28"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"4.533372","7":"7.7425810","8":"2"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"1.328361","7":"0.8280881","8":"44"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.773552","7":"5.0748655","8":"4"},{"1":"Massachusetts","2":"MA","3":"Northeast","4":"6547629","5":"118","6":"6.547629","7":"1.8021791","8":"32"},{"1":"Michigan","2":"MI","3":"North Central","4":"9883640","5":"413","6":"9.883640","7":"4.1786225","8":"7"},{"1":"Minnesota","2":"MN","3":"North Central","4":"5303925","5":"53","6":"5.303925","7":"0.9992600","8":"40"},{"1":"Mississippi","2":"MS","3":"South","4":"2967297","5":"120","6":"2.967297","7":"4.0440846","8":"8"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.988927","7":"5.3598917","8":"3"},{"1":"Montana","2":"MT","3":"West","4":"989415","5":"12","6":"0.989415","7":"1.2128379","8":"39"},{"1":"Nebraska","2":"NE","3":"North Central","4":"1826341","5":"32","6":"1.826341","7":"1.7521372","8":"33"},{"1":"Nevada","2":"NV","3":"West","4":"2700551","5":"84","6":"2.700551","7":"3.1104763","8":"19"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"1.316470","7":"0.3798036","8":"50"},{"1":"New Jersey","2":"NJ","3":"Northeast","4":"8791894","5":"246","6":"8.791894","7":"2.7980319","8":"24"},{"1":"New Mexico","2":"NM","3":"West","4":"2059179","5":"67","6":"2.059179","7":"3.2537239","8":"15"},{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"19.378102","7":"2.6679599","8":"29"},{"1":"North Carolina","2":"NC","3":"South","4":"9535483","5":"286","6":"9.535483","7":"2.9993237","8":"20"},{"1":"North Dakota","2":"ND","3":"North Central","4":"672591","5":"4","6":"0.672591","7":"0.5947151","8":"48"},{"1":"Ohio","2":"OH","3":"North Central","4":"11536504","5":"310","6":"11.536504","7":"2.6871225","8":"26"},{"1":"Oklahoma","2":"OK","3":"South","4":"3751351","5":"111","6":"3.751351","7":"2.9589340","8":"21"},{"1":"Oregon","2":"OR","3":"West","4":"3831074","5":"36","6":"3.831074","7":"0.9396843","8":"42"},{"1":"Pennsylvania","2":"PA","3":"Northeast","4":"12702379","5":"457","6":"12.702379","7":"3.5977513","8":"11"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.052567","7":"1.5200933","8":"35"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.625364","7":"4.4753235","8":"5"},{"1":"South Dakota","2":"SD","3":"North Central","4":"814180","5":"8","6":"0.814180","7":"0.9825837","8":"41"},{"1":"Tennessee","2":"TN","3":"South","4":"6346105","5":"219","6":"6.346105","7":"3.4509357","8":"12"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"25.145561","7":"3.2013603","8":"16"},{"1":"Utah","2":"UT","3":"West","4":"2763885","5":"22","6":"2.763885","7":"0.7959810","8":"45"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.625741","7":"0.3196211","8":"51"},{"1":"Virginia","2":"VA","3":"South","4":"8001024","5":"250","6":"8.001024","7":"3.1246001","8":"18"},{"1":"Washington","2":"WA","3":"West","4":"6724540","5":"93","6":"6.724540","7":"1.3829942","8":"37"},{"1":"West Virginia","2":"WV","3":"South","4":"1852994","5":"27","6":"1.852994","7":"1.4571013","8":"36"},{"1":"Wisconsin","2":"WI","3":"North Central","4":"5686986","5":"97","6":"5.686986","7":"1.7056487","8":"34"},{"1":"Wyoming","2":"WY","3":"West","4":"563626","5":"5","6":"0.563626","7":"0.8871131","8":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(murders)</code></pre>
+<table style="width:92%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+<col width="22%" />
+<col width="18%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">AL</td>
+<td align="center">South</td>
+<td align="center">4779736</td>
+<td align="center">135</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">AK</td>
+<td align="center">West</td>
+<td align="center">710231</td>
+<td align="center">19</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">AZ</td>
+<td align="center">West</td>
+<td align="center">6392017</td>
+<td align="center">232</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">AR</td>
+<td align="center">South</td>
+<td align="center">2915918</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">CA</td>
+<td align="center">West</td>
+<td align="center">37253956</td>
+<td align="center">1257</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">CO</td>
+<td align="center">West</td>
+<td align="center">5029196</td>
+<td align="center">65</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+<td align="center">Northeast</td>
+<td align="center">3574097</td>
+<td align="center">97</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">DE</td>
+<td align="center">South</td>
+<td align="center">897934</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+<td align="center">South</td>
+<td align="center">601723</td>
+<td align="center">99</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">FL</td>
+<td align="center">South</td>
+<td align="center">19687653</td>
+<td align="center">669</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">GA</td>
+<td align="center">South</td>
+<td align="center">9920000</td>
+<td align="center">376</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">HI</td>
+<td align="center">West</td>
+<td align="center">1360301</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">ID</td>
+<td align="center">West</td>
+<td align="center">1567582</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">IL</td>
+<td align="center">North Central</td>
+<td align="center">12830632</td>
+<td align="center">364</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">IN</td>
+<td align="center">North Central</td>
+<td align="center">6483802</td>
+<td align="center">142</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">IA</td>
+<td align="center">North Central</td>
+<td align="center">3046355</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">KS</td>
+<td align="center">North Central</td>
+<td align="center">2853118</td>
+<td align="center">63</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">KY</td>
+<td align="center">South</td>
+<td align="center">4339367</td>
+<td align="center">116</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+<td align="center">South</td>
+<td align="center">4533372</td>
+<td align="center">351</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+<td align="center">Northeast</td>
+<td align="center">1328361</td>
+<td align="center">11</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+<td align="center">South</td>
+<td align="center">5773552</td>
+<td align="center">293</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">MA</td>
+<td align="center">Northeast</td>
+<td align="center">6547629</td>
+<td align="center">118</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">MI</td>
+<td align="center">North Central</td>
+<td align="center">9883640</td>
+<td align="center">413</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">MN</td>
+<td align="center">North Central</td>
+<td align="center">5303925</td>
+<td align="center">53</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">MS</td>
+<td align="center">South</td>
+<td align="center">2967297</td>
+<td align="center">120</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+<td align="center">North Central</td>
+<td align="center">5988927</td>
+<td align="center">321</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">MT</td>
+<td align="center">West</td>
+<td align="center">989415</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">NE</td>
+<td align="center">North Central</td>
+<td align="center">1826341</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">NV</td>
+<td align="center">West</td>
+<td align="center">2700551</td>
+<td align="center">84</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+<td align="center">Northeast</td>
+<td align="center">1316470</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">NJ</td>
+<td align="center">Northeast</td>
+<td align="center">8791894</td>
+<td align="center">246</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">NM</td>
+<td align="center">West</td>
+<td align="center">2059179</td>
+<td align="center">67</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">NC</td>
+<td align="center">South</td>
+<td align="center">9535483</td>
+<td align="center">286</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">ND</td>
+<td align="center">North Central</td>
+<td align="center">672591</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">OH</td>
+<td align="center">North Central</td>
+<td align="center">11536504</td>
+<td align="center">310</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">OK</td>
+<td align="center">South</td>
+<td align="center">3751351</td>
+<td align="center">111</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">OR</td>
+<td align="center">West</td>
+<td align="center">3831074</td>
+<td align="center">36</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">PA</td>
+<td align="center">Northeast</td>
+<td align="center">12702379</td>
+<td align="center">457</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+<td align="center">Northeast</td>
+<td align="center">1052567</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+<td align="center">South</td>
+<td align="center">4625364</td>
+<td align="center">207</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">SD</td>
+<td align="center">North Central</td>
+<td align="center">814180</td>
+<td align="center">8</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">TN</td>
+<td align="center">South</td>
+<td align="center">6346105</td>
+<td align="center">219</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+<td align="center">South</td>
+<td align="center">25145561</td>
+<td align="center">805</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">UT</td>
+<td align="center">West</td>
+<td align="center">2763885</td>
+<td align="center">22</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+<td align="center">Northeast</td>
+<td align="center">625741</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">VA</td>
+<td align="center">South</td>
+<td align="center">8001024</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">WA</td>
+<td align="center">West</td>
+<td align="center">6724540</td>
+<td align="center">93</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">WV</td>
+<td align="center">South</td>
+<td align="center">1852994</td>
+<td align="center">27</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">WI</td>
+<td align="center">North Central</td>
+<td align="center">5686986</td>
+<td align="center">97</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">WY</td>
+<td align="center">West</td>
+<td align="center">563626</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
+<table style="width:60%;">
+<colgroup>
+<col width="34%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">population_in_millions</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4.78</td>
+<td align="center">2.824</td>
+<td align="center">23</td>
+</tr>
+<tr class="even">
+<td align="center">0.7102</td>
+<td align="center">2.675</td>
+<td align="center">27</td>
+</tr>
+<tr class="odd">
+<td align="center">6.392</td>
+<td align="center">3.63</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="center">2.916</td>
+<td align="center">3.189</td>
+<td align="center">17</td>
+</tr>
+<tr class="odd">
+<td align="center">37.25</td>
+<td align="center">3.374</td>
+<td align="center">14</td>
+</tr>
+<tr class="even">
+<td align="center">5.029</td>
+<td align="center">1.292</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">3.574</td>
+<td align="center">2.714</td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center">0.8979</td>
+<td align="center">4.232</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6017</td>
+<td align="center">16.45</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">19.69</td>
+<td align="center">3.398</td>
+<td align="center">13</td>
+</tr>
+<tr class="odd">
+<td align="center">9.92</td>
+<td align="center">3.79</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">1.36</td>
+<td align="center">0.5146</td>
+<td align="center">49</td>
+</tr>
+<tr class="odd">
+<td align="center">1.568</td>
+<td align="center">0.7655</td>
+<td align="center">46</td>
+</tr>
+<tr class="even">
+<td align="center">12.83</td>
+<td align="center">2.837</td>
+<td align="center">22</td>
+</tr>
+<tr class="odd">
+<td align="center">6.484</td>
+<td align="center">2.19</td>
+<td align="center">31</td>
+</tr>
+<tr class="even">
+<td align="center">3.046</td>
+<td align="center">0.6893</td>
+<td align="center">47</td>
+</tr>
+<tr class="odd">
+<td align="center">2.853</td>
+<td align="center">2.208</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="center">4.339</td>
+<td align="center">2.673</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">4.533</td>
+<td align="center">7.743</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">1.328</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="odd">
+<td align="center">5.774</td>
+<td align="center">5.075</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">6.548</td>
+<td align="center">1.802</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">9.884</td>
+<td align="center">4.179</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">5.304</td>
+<td align="center">0.9993</td>
+<td align="center">40</td>
+</tr>
+<tr class="odd">
+<td align="center">2.967</td>
+<td align="center">4.044</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">5.989</td>
+<td align="center">5.36</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">0.9894</td>
+<td align="center">1.213</td>
+<td align="center">39</td>
+</tr>
+<tr class="even">
+<td align="center">1.826</td>
+<td align="center">1.752</td>
+<td align="center">33</td>
+</tr>
+<tr class="odd">
+<td align="center">2.701</td>
+<td align="center">3.11</td>
+<td align="center">19</td>
+</tr>
+<tr class="even">
+<td align="center">1.316</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">8.792</td>
+<td align="center">2.798</td>
+<td align="center">24</td>
+</tr>
+<tr class="even">
+<td align="center">2.059</td>
+<td align="center">3.254</td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td align="center">19.38</td>
+<td align="center">2.668</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="center">9.535</td>
+<td align="center">2.999</td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="center">0.6726</td>
+<td align="center">0.5947</td>
+<td align="center">48</td>
+</tr>
+<tr class="even">
+<td align="center">11.54</td>
+<td align="center">2.687</td>
+<td align="center">26</td>
+</tr>
+<tr class="odd">
+<td align="center">3.751</td>
+<td align="center">2.959</td>
+<td align="center">21</td>
+</tr>
+<tr class="even">
+<td align="center">3.831</td>
+<td align="center">0.9397</td>
+<td align="center">42</td>
+</tr>
+<tr class="odd">
+<td align="center">12.7</td>
+<td align="center">3.598</td>
+<td align="center">11</td>
+</tr>
+<tr class="even">
+<td align="center">1.053</td>
+<td align="center">1.52</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">4.625</td>
+<td align="center">4.475</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">0.8142</td>
+<td align="center">0.9826</td>
+<td align="center">41</td>
+</tr>
+<tr class="odd">
+<td align="center">6.346</td>
+<td align="center">3.451</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">25.15</td>
+<td align="center">3.201</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">2.764</td>
+<td align="center">0.796</td>
+<td align="center">45</td>
+</tr>
+<tr class="even">
+<td align="center">0.6257</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+<tr class="odd">
+<td align="center">8.001</td>
+<td align="center">3.125</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">6.725</td>
+<td align="center">1.383</td>
+<td align="center">37</td>
+</tr>
+<tr class="odd">
+<td align="center">1.853</td>
+<td align="center">1.457</td>
+<td align="center">36</td>
+</tr>
+<tr class="even">
+<td align="center">5.687</td>
+<td align="center">1.706</td>
+<td align="center">34</td>
+</tr>
+<tr class="odd">
+<td align="center">0.5636</td>
+<td align="center">0.8871</td>
+<td align="center">43</td>
+</tr>
+</tbody>
+</table>
 <ol start="3" style="list-style-type: decimal">
 <li>With dplyr, we can use <code>select</code> to show only certain columns. For example, with this code we would only show the states and population sizes:</li>
 </ol>
-<pre class="r"><code>select(murders, state, population) %&gt;% head()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["population"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"4779736","_rn_":"1"},{"1":"Alaska","2":"710231","_rn_":"2"},{"1":"Arizona","2":"6392017","_rn_":"3"},{"1":"Arkansas","2":"2915918","_rn_":"4"},{"1":"California","2":"37253956","_rn_":"5"},{"1":"Colorado","2":"5029196","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(select(murders, state, population) %&gt;% head())</code></pre>
+<table style="width:36%;">
+<colgroup>
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">4779736</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">710231</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">6392017</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">2915918</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">37253956</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">5029196</td>
+</tr>
+</tbody>
+</table>
 <p>Use <code>select</code> to show the state names and abbreviations in <code>murders</code>. Do not redefine <code>murders</code>, just show the results.</p>
-<pre class="r"><code>select(murders,state,abb)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"Alabama","2":"AL"},{"1":"Alaska","2":"AK"},{"1":"Arizona","2":"AZ"},{"1":"Arkansas","2":"AR"},{"1":"California","2":"CA"},{"1":"Colorado","2":"CO"},{"1":"Connecticut","2":"CT"},{"1":"Delaware","2":"DE"},{"1":"District of Columbia","2":"DC"},{"1":"Florida","2":"FL"},{"1":"Georgia","2":"GA"},{"1":"Hawaii","2":"HI"},{"1":"Idaho","2":"ID"},{"1":"Illinois","2":"IL"},{"1":"Indiana","2":"IN"},{"1":"Iowa","2":"IA"},{"1":"Kansas","2":"KS"},{"1":"Kentucky","2":"KY"},{"1":"Louisiana","2":"LA"},{"1":"Maine","2":"ME"},{"1":"Maryland","2":"MD"},{"1":"Massachusetts","2":"MA"},{"1":"Michigan","2":"MI"},{"1":"Minnesota","2":"MN"},{"1":"Mississippi","2":"MS"},{"1":"Missouri","2":"MO"},{"1":"Montana","2":"MT"},{"1":"Nebraska","2":"NE"},{"1":"Nevada","2":"NV"},{"1":"New Hampshire","2":"NH"},{"1":"New Jersey","2":"NJ"},{"1":"New Mexico","2":"NM"},{"1":"New York","2":"NY"},{"1":"North Carolina","2":"NC"},{"1":"North Dakota","2":"ND"},{"1":"Ohio","2":"OH"},{"1":"Oklahoma","2":"OK"},{"1":"Oregon","2":"OR"},{"1":"Pennsylvania","2":"PA"},{"1":"Rhode Island","2":"RI"},{"1":"South Carolina","2":"SC"},{"1":"South Dakota","2":"SD"},{"1":"Tennessee","2":"TN"},{"1":"Texas","2":"TX"},{"1":"Utah","2":"UT"},{"1":"Vermont","2":"VT"},{"1":"Virginia","2":"VA"},{"1":"Washington","2":"WA"},{"1":"West Virginia","2":"WV"},{"1":"Wisconsin","2":"WI"},{"1":"Wyoming","2":"WY"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(select(murders,state,abb))</code></pre>
+<table style="width:40%;">
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">AL</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">AK</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">AZ</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">AR</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">CA</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">CO</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">DE</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">FL</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">GA</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">HI</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">ID</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">IL</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">IN</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">IA</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">KS</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">KY</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">MA</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">MI</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">MN</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">MS</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">MT</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">NE</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">NV</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">NJ</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">NM</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">NC</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">ND</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">OH</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">OK</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">OR</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">PA</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">SD</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">TN</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">UT</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">VA</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">WA</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">WV</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">WI</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">WY</td>
+</tr>
+</tbody>
+</table>
 <ol start="4" style="list-style-type: decimal">
 <li>The dplyr function <code>filter</code> is used to choose specific rows of the data frame to keep. Unlike <code>select</code> which is for columns, <code>filter</code> is for rows. For example, you can show just the New York row like this:</li>
 </ol>
-<pre class="r"><code>filter(murders, state == &quot;New York&quot;)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"19.3781","7":"2.66796","8":"29"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(filter(murders, state == &quot;New York&quot;))</code></pre>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="14%" />
+<col width="8%" />
+<col width="16%" />
+<col width="17%" />
+<col width="10%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+<th align="center">population_in_millions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+<td align="center">19.38</td>
+</tr>
+</tbody>
+</table>
+<table style="width:22%;">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.668</td>
+<td align="center">29</td>
+</tr>
+</tbody>
+</table>
 <p>You can use other logical vectors to filter rows.</p>
 <p>Use <code>filter</code> to show the top 5 states with the highest murder rates. After we add murder rate and rank, do not change the murders dataset, just show the result. Remember that you can filter based on the <code>rank</code> column.</p>
-<pre class="r"><code>filter(murders, rank&lt;=5)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"District of Columbia","2":"DC","3":"South","4":"601723","5":"99","6":"0.601723","7":"16.452753","8":"1"},{"1":"Louisiana","2":"LA","3":"South","4":"4533372","5":"351","6":"4.533372","7":"7.742581","8":"2"},{"1":"Maryland","2":"MD","3":"South","4":"5773552","5":"293","6":"5.773552","7":"5.074866","8":"4"},{"1":"Missouri","2":"MO","3":"North Central","4":"5988927","5":"321","6":"5.988927","7":"5.359892","8":"3"},{"1":"South Carolina","2":"SC","3":"South","4":"4625364","5":"207","6":"4.625364","7":"4.475323","8":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(filter(murders, rank&lt;=5))</code></pre>
+<table style="width:92%;">
+<caption>Table continues below</caption>
+<colgroup>
+<col width="31%" />
+<col width="8%" />
+<col width="22%" />
+<col width="18%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">DC</td>
+<td align="center">South</td>
+<td align="center">601723</td>
+<td align="center">99</td>
+</tr>
+<tr class="even">
+<td align="center">Louisiana</td>
+<td align="center">LA</td>
+<td align="center">South</td>
+<td align="center">4533372</td>
+<td align="center">351</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">MD</td>
+<td align="center">South</td>
+<td align="center">5773552</td>
+<td align="center">293</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">MO</td>
+<td align="center">North Central</td>
+<td align="center">5988927</td>
+<td align="center">321</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">SC</td>
+<td align="center">South</td>
+<td align="center">4625364</td>
+<td align="center">207</td>
+</tr>
+</tbody>
+</table>
+<table style="width:57%;">
+<colgroup>
+<col width="34%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">population_in_millions</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0.6017</td>
+<td align="center">16.45</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4.533</td>
+<td align="center">7.743</td>
+<td align="center">2</td>
+</tr>
+<tr class="odd">
+<td align="center">5.774</td>
+<td align="center">5.075</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">5.989</td>
+<td align="center">5.36</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">4.625</td>
+<td align="center">4.475</td>
+<td align="center">5</td>
+</tr>
+</tbody>
+</table>
 <ol start="5" style="list-style-type: decimal">
 <li>We can remove rows using the <code>!=</code> operator. For example, to remove Florida, we would do this:</li>
 </ol>
@@ -2426,12 +4973,68 @@ nrow(no_south)</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>We can also use <code>%in%</code> to filter with dplyr. You can therefore see the data from New York and Texas like this:</li>
 </ol>
-<pre class="r"><code>filter(murders, state %in% c(&quot;New York&quot;, &quot;Texas&quot;))</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"New York","2":"NY","3":"Northeast","4":"19378102","5":"517","6":"19.37810","7":"2.66796","8":"29"},{"1":"Texas","2":"TX","3":"South","4":"25145561","5":"805","6":"25.14556","7":"3.20136","8":"16"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(filter(murders, state %in% c(&quot;New York&quot;, &quot;Texas&quot;)))</code></pre>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="14%" />
+<col width="8%" />
+<col width="16%" />
+<col width="17%" />
+<col width="10%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+<th align="center">population_in_millions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">NY</td>
+<td align="center">Northeast</td>
+<td align="center">19378102</td>
+<td align="center">517</td>
+<td align="center">19.38</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">TX</td>
+<td align="center">South</td>
+<td align="center">25145561</td>
+<td align="center">805</td>
+<td align="center">25.15</td>
+</tr>
+</tbody>
+</table>
+<table style="width:22%;">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.668</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="center">3.201</td>
+<td align="center">16</td>
+</tr>
+</tbody>
+</table>
 <p>Create a new data frame called <code>murders_nw</code> with only the states from the Northeast and the West. How many states are in this category?</p>
 <pre class="r"><code>murders_nw&lt;- filter(murders, region%in% c(&quot;Northeast&quot;,&quot;West&quot;))
 nrow(murders_nw)</code></pre>
@@ -2439,20 +5042,163 @@ nrow(murders_nw)</code></pre>
 <ol start="7" style="list-style-type: decimal">
 <li>Suppose you want to live in the Northeast or West and want the murder rate to be less than 1. We want to see the data for the states satisfying these options. Note that you can use logical operators with <code>filter</code>. Here is an example in which we filter to keep only small states in the Northeast region.</li>
 </ol>
-<pre class="r"><code>filter(murders, population &lt; 5000000 &amp; region == &quot;Northeast&quot;)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["abb"],"name":[2],"type":["chr"],"align":["left"]},{"label":["region"],"name":[3],"type":["fct"],"align":["left"]},{"label":["population"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["population_in_millions"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["rate"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Connecticut","2":"CT","3":"Northeast","4":"3574097","5":"97","6":"3.574097","7":"2.7139722","8":"25"},{"1":"Maine","2":"ME","3":"Northeast","4":"1328361","5":"11","6":"1.328361","7":"0.8280881","8":"44"},{"1":"New Hampshire","2":"NH","3":"Northeast","4":"1316470","5":"5","6":"1.316470","7":"0.3798036","8":"50"},{"1":"Rhode Island","2":"RI","3":"Northeast","4":"1052567","5":"16","6":"1.052567","7":"1.5200933","8":"35"},{"1":"Vermont","2":"VT","3":"Northeast","4":"625741","5":"2","6":"0.625741","7":"0.3196211","8":"51"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(filter(murders, population &lt; 5000000 &amp; region == &quot;Northeast&quot;))</code></pre>
+<table>
+<caption>Table continues below</caption>
+<colgroup>
+<col width="20%" />
+<col width="7%" />
+<col width="15%" />
+<col width="16%" />
+<col width="10%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">abb</th>
+<th align="center">region</th>
+<th align="center">population</th>
+<th align="center">total</th>
+<th align="center">population_in_millions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">CT</td>
+<td align="center">Northeast</td>
+<td align="center">3574097</td>
+<td align="center">97</td>
+<td align="center">3.574</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">ME</td>
+<td align="center">Northeast</td>
+<td align="center">1328361</td>
+<td align="center">11</td>
+<td align="center">1.328</td>
+</tr>
+<tr class="odd">
+<td align="center">New Hampshire</td>
+<td align="center">NH</td>
+<td align="center">Northeast</td>
+<td align="center">1316470</td>
+<td align="center">5</td>
+<td align="center">1.316</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">RI</td>
+<td align="center">Northeast</td>
+<td align="center">1052567</td>
+<td align="center">16</td>
+<td align="center">1.053</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">VT</td>
+<td align="center">Northeast</td>
+<td align="center">625741</td>
+<td align="center">2</td>
+<td align="center">0.6257</td>
+</tr>
+</tbody>
+</table>
+<table style="width:25%;">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">2.714</td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="odd">
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="center">1.52</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+</tbody>
+</table>
 <p>Make sure <code>murders</code> has been defined with <code>rate</code> and <code>rank</code> and still has all states. Create a table called <code>my_states</code> that contains rows for states satisfying both the conditions: it is in the Northeast or West and the murder rate is less than 1. Use <code>select</code> to show only the state name, the rate, and the rank.</p>
 <pre class="r"><code>my_states&lt;-filter(murders, region%in% c(&quot;Northeast&quot;,&quot;West&quot;) &amp; rate&lt;1)
-select(my_states,state, rate, rank)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"0.5145920","3":"49"},{"1":"Idaho","2":"0.7655102","3":"46"},{"1":"Maine","2":"0.8280881","3":"44"},{"1":"New Hampshire","2":"0.3798036","3":"50"},{"1":"Oregon","2":"0.9396843","3":"42"},{"1":"Utah","2":"0.7959810","3":"45"},{"1":"Vermont","2":"0.3196211","3":"51"},{"1":"Wyoming","2":"0.8871131","3":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(select(my_states,state, rate, rank))</code></pre>
+<table style="width:47%;">
+<colgroup>
+<col width="22%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Hawaii</td>
+<td align="center">0.5146</td>
+<td align="center">49</td>
+</tr>
+<tr class="even">
+<td align="center">Idaho</td>
+<td align="center">0.7655</td>
+<td align="center">46</td>
+</tr>
+<tr class="odd">
+<td align="center">Maine</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">Oregon</td>
+<td align="center">0.9397</td>
+<td align="center">42</td>
+</tr>
+<tr class="even">
+<td align="center">Utah</td>
+<td align="center">0.796</td>
+<td align="center">45</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="center">Wyoming</td>
+<td align="center">0.8871</td>
+<td align="center">43</td>
+</tr>
+</tbody>
+</table>
 <p>##4.5 The pipe: <code>%&gt;%</code></p>
 <p>With dplyr we can perform a series of operations, for example <code>select</code> and then <code>filter</code>, by sending the results of one function to another using what is called the pipe operator: <code>%&gt;%</code>. Some details are included below.</p>
 <p>We wrote code above to show three variables (state, region, rate) for states that have murder rates below 0.71. To do this, we defined the intermediate object <code>new_table</code>. In dplyr we can write code that looks more like a description of what we want to do without intermediate objects: <code>original data → select →filter</code></p>
@@ -2484,12 +5230,48 @@ select(my_states,state, rate, rank)</code></pre>
 <pre><code>## [1] 2</code></pre>
 <pre class="r"><code>#&gt; [1] 2</code></pre>
 <p>Therefore, when using the pipe with data frames and dplyr, we no longer need to specify the required first argument since the dplyr functions we have described all take the data as the first argument. In the code we wrote:</p>
-<pre class="r"><code>murders %&gt;% select(state, region, rate) %&gt;% filter(rate &lt;= 0.71)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["region"],"name":[2],"type":["fct"],"align":["left"]},{"label":["rate"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"West","3":"0.5145920"},{"1":"Iowa","2":"North Central","3":"0.6893484"},{"1":"New Hampshire","2":"Northeast","3":"0.3798036"},{"1":"North Dakota","2":"North Central","3":"0.5947151"},{"1":"Vermont","2":"Northeast","3":"0.3196211"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(murders %&gt;% select(state, region, rate) %&gt;% filter(rate &lt;= 0.71))</code></pre>
+<table style="width:57%;">
+<colgroup>
+<col width="22%" />
+<col width="22%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">region</th>
+<th align="center">rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Hawaii</td>
+<td align="center">West</td>
+<td align="center">0.5146</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">North Central</td>
+<td align="center">0.6893</td>
+</tr>
+<tr class="odd">
+<td align="center">New Hampshire</td>
+<td align="center">Northeast</td>
+<td align="center">0.3798</td>
+</tr>
+<tr class="even">
+<td align="center">North Dakota</td>
+<td align="center">North Central</td>
+<td align="center">0.5947</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">Northeast</td>
+<td align="center">0.3196</td>
+</tr>
+</tbody>
+</table>
 <p><code>murders</code> is the first argument of the <code>select</code> function, and the new data frame (formerly <code>new_table</code>) is the first argument of the filter function.</p>
 <p>Note that the pipe works well with functions where the first argument is the input data. Functions in tidyverse packages like dplyr have this format and can be used easily with the pipe.</p>
 <p>##4.6 Exercises 1. The pipe <code>%&gt;%</code> can be used to perform operations sequentially without having to define intermediate objects. Start by redefining murder to include rate and rank.</p>
@@ -2499,42 +5281,436 @@ select(my_states,state, rate, rank)</code></pre>
 <pre class="r"><code>my_states &lt;- filter(murders, region %in% c(&quot;Northeast&quot;, &quot;West&quot;) &amp; 
                       rate &lt; 1)
 
-select(my_states, state, rate, rank)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"0.5145920","3":"49"},{"1":"Idaho","2":"0.7655102","3":"46"},{"1":"Maine","2":"0.8280881","3":"44"},{"1":"New Hampshire","2":"0.3798036","3":"50"},{"1":"Oregon","2":"0.9396843","3":"42"},{"1":"Utah","2":"0.7959810","3":"45"},{"1":"Vermont","2":"0.3196211","3":"51"},{"1":"Wyoming","2":"0.8871131","3":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(select(my_states, state, rate, rank))</code></pre>
+<table style="width:47%;">
+<colgroup>
+<col width="22%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Hawaii</td>
+<td align="center">0.5146</td>
+<td align="center">49</td>
+</tr>
+<tr class="even">
+<td align="center">Idaho</td>
+<td align="center">0.7655</td>
+<td align="center">46</td>
+</tr>
+<tr class="odd">
+<td align="center">Maine</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">Oregon</td>
+<td align="center">0.9397</td>
+<td align="center">42</td>
+</tr>
+<tr class="even">
+<td align="center">Utah</td>
+<td align="center">0.796</td>
+<td align="center">45</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="center">Wyoming</td>
+<td align="center">0.8871</td>
+<td align="center">43</td>
+</tr>
+</tbody>
+</table>
 <p>The pipe <code>%&gt;%</code> permits us to perform both operations sequentially without having to define an intermediate variable <code>my_states</code>. We therefore could have mutated and selected in the same line like this:</p>
-<pre class="r"><code>mutate(murders, rate =  total / population * 100000, 
+<pre class="r"><code>pander(mutate(murders, rate =  total / population * 100000, 
        rank = rank(-rate)) %&gt;%
-  select(state, rate, rank)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Alabama","2":"2.8244238","3":"23"},{"1":"Alaska","2":"2.6751860","3":"27"},{"1":"Arizona","2":"3.6295273","3":"10"},{"1":"Arkansas","2":"3.1893901","3":"17"},{"1":"California","2":"3.3741383","3":"14"},{"1":"Colorado","2":"1.2924531","3":"38"},{"1":"Connecticut","2":"2.7139722","3":"25"},{"1":"Delaware","2":"4.2319369","3":"6"},{"1":"District of Columbia","2":"16.4527532","3":"1"},{"1":"Florida","2":"3.3980688","3":"13"},{"1":"Georgia","2":"3.7903226","3":"9"},{"1":"Hawaii","2":"0.5145920","3":"49"},{"1":"Idaho","2":"0.7655102","3":"46"},{"1":"Illinois","2":"2.8369608","3":"22"},{"1":"Indiana","2":"2.1900730","3":"31"},{"1":"Iowa","2":"0.6893484","3":"47"},{"1":"Kansas","2":"2.2081106","3":"30"},{"1":"Kentucky","2":"2.6732010","3":"28"},{"1":"Louisiana","2":"7.7425810","3":"2"},{"1":"Maine","2":"0.8280881","3":"44"},{"1":"Maryland","2":"5.0748655","3":"4"},{"1":"Massachusetts","2":"1.8021791","3":"32"},{"1":"Michigan","2":"4.1786225","3":"7"},{"1":"Minnesota","2":"0.9992600","3":"40"},{"1":"Mississippi","2":"4.0440846","3":"8"},{"1":"Missouri","2":"5.3598917","3":"3"},{"1":"Montana","2":"1.2128379","3":"39"},{"1":"Nebraska","2":"1.7521372","3":"33"},{"1":"Nevada","2":"3.1104763","3":"19"},{"1":"New Hampshire","2":"0.3798036","3":"50"},{"1":"New Jersey","2":"2.7980319","3":"24"},{"1":"New Mexico","2":"3.2537239","3":"15"},{"1":"New York","2":"2.6679599","3":"29"},{"1":"North Carolina","2":"2.9993237","3":"20"},{"1":"North Dakota","2":"0.5947151","3":"48"},{"1":"Ohio","2":"2.6871225","3":"26"},{"1":"Oklahoma","2":"2.9589340","3":"21"},{"1":"Oregon","2":"0.9396843","3":"42"},{"1":"Pennsylvania","2":"3.5977513","3":"11"},{"1":"Rhode Island","2":"1.5200933","3":"35"},{"1":"South Carolina","2":"4.4753235","3":"5"},{"1":"South Dakota","2":"0.9825837","3":"41"},{"1":"Tennessee","2":"3.4509357","3":"12"},{"1":"Texas","2":"3.2013603","3":"16"},{"1":"Utah","2":"0.7959810","3":"45"},{"1":"Vermont","2":"0.3196211","3":"51"},{"1":"Virginia","2":"3.1246001","3":"18"},{"1":"Washington","2":"1.3829942","3":"37"},{"1":"West Virginia","2":"1.4571013","3":"36"},{"1":"Wisconsin","2":"1.7056487","3":"34"},{"1":"Wyoming","2":"0.8871131","3":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+  select(state, rate, rank))</code></pre>
+<table style="width:57%;">
+<colgroup>
+<col width="31%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Alabama</td>
+<td align="center">2.824</td>
+<td align="center">23</td>
+</tr>
+<tr class="even">
+<td align="center">Alaska</td>
+<td align="center">2.675</td>
+<td align="center">27</td>
+</tr>
+<tr class="odd">
+<td align="center">Arizona</td>
+<td align="center">3.63</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="center">Arkansas</td>
+<td align="center">3.189</td>
+<td align="center">17</td>
+</tr>
+<tr class="odd">
+<td align="center">California</td>
+<td align="center">3.374</td>
+<td align="center">14</td>
+</tr>
+<tr class="even">
+<td align="center">Colorado</td>
+<td align="center">1.292</td>
+<td align="center">38</td>
+</tr>
+<tr class="odd">
+<td align="center">Connecticut</td>
+<td align="center">2.714</td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center">Delaware</td>
+<td align="center">4.232</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="center">District of Columbia</td>
+<td align="center">16.45</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">Florida</td>
+<td align="center">3.398</td>
+<td align="center">13</td>
+</tr>
+<tr class="odd">
+<td align="center">Georgia</td>
+<td align="center">3.79</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">Hawaii</td>
+<td align="center">0.5146</td>
+<td align="center">49</td>
+</tr>
+<tr class="odd">
+<td align="center">Idaho</td>
+<td align="center">0.7655</td>
+<td align="center">46</td>
+</tr>
+<tr class="even">
+<td align="center">Illinois</td>
+<td align="center">2.837</td>
+<td align="center">22</td>
+</tr>
+<tr class="odd">
+<td align="center">Indiana</td>
+<td align="center">2.19</td>
+<td align="center">31</td>
+</tr>
+<tr class="even">
+<td align="center">Iowa</td>
+<td align="center">0.6893</td>
+<td align="center">47</td>
+</tr>
+<tr class="odd">
+<td align="center">Kansas</td>
+<td align="center">2.208</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="center">Kentucky</td>
+<td align="center">2.673</td>
+<td align="center">28</td>
+</tr>
+<tr class="odd">
+<td align="center">Louisiana</td>
+<td align="center">7.743</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">Maine</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="odd">
+<td align="center">Maryland</td>
+<td align="center">5.075</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">Massachusetts</td>
+<td align="center">1.802</td>
+<td align="center">32</td>
+</tr>
+<tr class="odd">
+<td align="center">Michigan</td>
+<td align="center">4.179</td>
+<td align="center">7</td>
+</tr>
+<tr class="even">
+<td align="center">Minnesota</td>
+<td align="center">0.9993</td>
+<td align="center">40</td>
+</tr>
+<tr class="odd">
+<td align="center">Mississippi</td>
+<td align="center">4.044</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="center">Missouri</td>
+<td align="center">5.36</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">Montana</td>
+<td align="center">1.213</td>
+<td align="center">39</td>
+</tr>
+<tr class="even">
+<td align="center">Nebraska</td>
+<td align="center">1.752</td>
+<td align="center">33</td>
+</tr>
+<tr class="odd">
+<td align="center">Nevada</td>
+<td align="center">3.11</td>
+<td align="center">19</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">New Jersey</td>
+<td align="center">2.798</td>
+<td align="center">24</td>
+</tr>
+<tr class="even">
+<td align="center">New Mexico</td>
+<td align="center">3.254</td>
+<td align="center">15</td>
+</tr>
+<tr class="odd">
+<td align="center">New York</td>
+<td align="center">2.668</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="center">North Carolina</td>
+<td align="center">2.999</td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="center">North Dakota</td>
+<td align="center">0.5947</td>
+<td align="center">48</td>
+</tr>
+<tr class="even">
+<td align="center">Ohio</td>
+<td align="center">2.687</td>
+<td align="center">26</td>
+</tr>
+<tr class="odd">
+<td align="center">Oklahoma</td>
+<td align="center">2.959</td>
+<td align="center">21</td>
+</tr>
+<tr class="even">
+<td align="center">Oregon</td>
+<td align="center">0.9397</td>
+<td align="center">42</td>
+</tr>
+<tr class="odd">
+<td align="center">Pennsylvania</td>
+<td align="center">3.598</td>
+<td align="center">11</td>
+</tr>
+<tr class="even">
+<td align="center">Rhode Island</td>
+<td align="center">1.52</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">South Carolina</td>
+<td align="center">4.475</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="center">South Dakota</td>
+<td align="center">0.9826</td>
+<td align="center">41</td>
+</tr>
+<tr class="odd">
+<td align="center">Tennessee</td>
+<td align="center">3.451</td>
+<td align="center">12</td>
+</tr>
+<tr class="even">
+<td align="center">Texas</td>
+<td align="center">3.201</td>
+<td align="center">16</td>
+</tr>
+<tr class="odd">
+<td align="center">Utah</td>
+<td align="center">0.796</td>
+<td align="center">45</td>
+</tr>
+<tr class="even">
+<td align="center">Vermont</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+<tr class="odd">
+<td align="center">Virginia</td>
+<td align="center">3.125</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="center">Washington</td>
+<td align="center">1.383</td>
+<td align="center">37</td>
+</tr>
+<tr class="odd">
+<td align="center">West Virginia</td>
+<td align="center">1.457</td>
+<td align="center">36</td>
+</tr>
+<tr class="even">
+<td align="center">Wisconsin</td>
+<td align="center">1.706</td>
+<td align="center">34</td>
+</tr>
+<tr class="odd">
+<td align="center">Wyoming</td>
+<td align="center">0.8871</td>
+<td align="center">43</td>
+</tr>
+</tbody>
+</table>
 <p>Notice that <code>select</code> no longer has a data frame as the first argument. The first argument is assumed to be the result of the operation conducted right before the <code>%&gt;%</code>.</p>
 <p>Repeat the previous exercise, but now instead of creating a new object, show the result and only include the state, rate, and rank columns. Use a pipe <code>%&gt;%</code> to do this in just one line.</p>
-<pre class="r"><code>mutate(murders,rate= total/population*100000,rank=rank(-rate)) %&gt;% filter(region%in%c(&quot;Northeast&quot;,&quot;West&quot;)&amp;rate&lt;1)%&gt;% select(state,rate,rank)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Hawaii","2":"0.5145920","3":"49"},{"1":"Idaho","2":"0.7655102","3":"46"},{"1":"Maine","2":"0.8280881","3":"44"},{"1":"New Hampshire","2":"0.3798036","3":"50"},{"1":"Oregon","2":"0.9396843","3":"42"},{"1":"Utah","2":"0.7959810","3":"45"},{"1":"Vermont","2":"0.3196211","3":"51"},{"1":"Wyoming","2":"0.8871131","3":"43"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<pre class="r"><code>pander(mutate(murders,rate= total/population*100000,rank=rank(-rate)) %&gt;% filter(region%in%c(&quot;Northeast&quot;,&quot;West&quot;)&amp;rate&lt;1)%&gt;% select(state,rate,rank))</code></pre>
+<table style="width:47%;">
+<colgroup>
+<col width="22%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Hawaii</td>
+<td align="center">0.5146</td>
+<td align="center">49</td>
+</tr>
+<tr class="even">
+<td align="center">Idaho</td>
+<td align="center">0.7655</td>
+<td align="center">46</td>
+</tr>
+<tr class="odd">
+<td align="center">Maine</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">Oregon</td>
+<td align="center">0.9397</td>
+<td align="center">42</td>
+</tr>
+<tr class="even">
+<td align="center">Utah</td>
+<td align="center">0.796</td>
+<td align="center">45</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="center">Wyoming</td>
+<td align="center">0.8871</td>
+<td align="center">43</td>
+</tr>
+</tbody>
+</table>
 <ol start="2" style="list-style-type: decimal">
 <li>Reset <code>murders</code> to the original table by using <code>data(murders)</code>. Use a pipe to create a new data frame called <code>my_states</code> that considers only states in the Northeast or West which have a murder rate lower than 1, and contains only the state, rate and rank columns. The pipe should also have four components separated by three %&gt;%. The code should look something like this:</li>
 </ol>
-<pre class="r"><code>#my_states &lt;- murders %&gt;% mutate SOMETHING %&gt;%filter SOMETHING %&gt;%select SOMETHING</code></pre>
+<pre class="r"><code>##my_states &lt;- murders %&gt;% mutate SOMETHING %&gt;%filter SOMETHING %&gt;%select SOMETHING</code></pre>
 <pre class="r"><code>data(&quot;murders&quot;)
 my_states&lt;-murders %&gt;% mutate(rate= total/population*100000,rank=rank(-rate)) %&gt;% filter(region %in% c(&quot;Northeast&quot;,&quot;west&quot;) &amp; rate&lt;1) %&gt;%
   select(state,rate,rank)
-my_states</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["state"],"name":[1],"type":["chr"],"align":["left"]},{"label":["rate"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["rank"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Maine","2":"0.8280881","3":"44"},{"1":"New Hampshire","2":"0.3798036","3":"50"},{"1":"Vermont","2":"0.3196211","3":"51"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+pander(my_states)</code></pre>
+<table style="width:47%;">
+<colgroup>
+<col width="22%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">state</th>
+<th align="center">rate</th>
+<th align="center">rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Maine</td>
+<td align="center">0.8281</td>
+<td align="center">44</td>
+</tr>
+<tr class="even">
+<td align="center">New Hampshire</td>
+<td align="center">0.3798</td>
+<td align="center">50</td>
+</tr>
+<tr class="odd">
+<td align="center">Vermont</td>
+<td align="center">0.3196</td>
+<td align="center">51</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
