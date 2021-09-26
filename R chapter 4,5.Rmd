@@ -1,6 +1,8 @@
 ---
 title: "chapter 4,5"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 ## 4.7 Summarizing data
 An important part of exploratory data analysis is summarizing data. The average and standard deviation are two examples of widely used summary statistics. More informative summaries can often be achieved by first splitting data into groups. In this section, we cover two new dplyr verbs that make these computations easier: `summarize` and `group_by`. We learn to access resulting values using the `pull` function.
@@ -10,7 +12,7 @@ The `summarize` function in dplyr provides a way to compute summary statistics w
 ```{r}
 library(dplyr)
 library(dslabs)
-library(pander)
+library(pander) 
 data(heights)
 ```
 The following code computes the average and standard deviation for females:
@@ -19,7 +21,7 @@ The following code computes the average and standard deviation for females:
 s <- heights %>% 
   filter(sex == "Female") %>%
   summarize(average = mean(height), standard_deviation = sd(height))
-s
+pander(s)
 #>   average standard_deviation
 #> 1    64.9               3.76
 ```
@@ -43,7 +45,7 @@ murders <- murders %>% mutate(rate = total/population*100000)
 Remember that the US murder rate is not the average of the state murder rates:
 
 ```{r}
-summarize(murders, mean(rate))
+summarize(murders, mean(rate)) %>%pander
 #>   mean(rate)
 #> 1       2.78
 ```
@@ -51,7 +53,7 @@ This is because in the computation above the small states are given the same wei
 ```{r}
 us_murder_rate <- murders %>%
   summarize(rate = sum(total) / sum(population) * 100000)
-us_murder_rate
+us_murder_rate%>%pander
 #>   rate
 #> 1 3.03
 ```
@@ -65,7 +67,7 @@ But we can obtain these three values with just one line using the `quantile` fun
 ```{r}
 heights %>% 
   filter(sex == "Female") %>%
-  summarize(median_min_max = quantile(height, c(0.5, 0, 1)))
+  summarize(median_min_max = quantile(height, c(0.5, 0, 1)))%>%pander
 #>   median_min_max
 #> 1             65
 #> 2             51
@@ -80,7 +82,7 @@ median_min_max <- function(x){
 }
 heights %>% 
   filter(sex == "Female") %>%
-  summarize(median_min_max(height))
+  summarize(median_min_max(height))%>%pander
 #>   median minimum maximum
 #> 1     65      51      79
 ```
@@ -91,7 +93,7 @@ A common operation in data exploration is to first split data into groups and th
 
 If we type this:
 ```{r}
-heights %>% group_by(sex)
+heights %>% group_by(sex) %>%pander
 #> # A tibble: 1,050 x 2
 #> # Groups:   sex [2]
 #>   sex   height
@@ -106,7 +108,7 @@ heights %>% group_by(sex)
 The result does not look very different from `heights`, except we see `Groups: sex [2]` when we print the object. Although not immediately obvious from its appearance, this is now a special data frame called a grouped data frame, and dplyr functions, in particular `summarize`, will behave differently when acting on this object. Conceptually, you can think of this table as many tables, with the same columns but not necessarily the same number of rows, stacked together in one object. When we summarize the data after grouping, this is what happens:
 ```{r}
 heights %>%  group_by(sex) %>%
-  summarize(average = mean(height), standard_deviation = sd(height))
+  summarize(average = mean(height), standard_deviation = sd(height))%>%pander
 #> # A tibble: 2 x 3
 #>   sex    average standard_deviation
 #>   <fct>    <dbl>              <dbl>
@@ -119,7 +121,7 @@ For another example, let’s compute the median, minimum, and maximum murder rat
 ```{r}
 murders %>% 
   group_by(region) %>%
-  summarize(median_min_max(rate))
+  summarize(median_min_max(rate))%>%pander
 #> # A tibble: 4 x 4
 #>   region        median minimum maximum
 #>   <fct>          <dbl>   <dbl>   <dbl>
@@ -163,14 +165,14 @@ When examining a dataset, it is often convenient to sort the table by the differ
 ```{r}
 murders %>%
   arrange(population) %>%
-  head()
+  head()%>%pander
 ```
 With `arrange` we get to decide which column to sort by. To see the states by murder rate, from lowest to highest, we arrange by `rate` instead:
 
 ```{r}
 murders %>% 
   arrange(rate) %>%
-  head()
+  head()%>%pander
 #>           state abb        region population total  rate
 #> 1       Vermont  VT     Northeast     625741     2 0.320
 #> 2 New Hampshire  NH     Northeast    1316470     5 0.380
@@ -182,14 +184,14 @@ murders %>%
 Note that the default behavior is to order in ascending order. In dplyr, the function `desc` transforms a vector so that it is in descending order. To sort the table in descending order, we can type:
 ```{r}
 murders %>% 
-  arrange(desc(rate)) 
+  arrange(desc(rate)) %>%pander
 ```
 ### 4.9.1 Nested sorting
 If we are ordering by a column with ties, we can use a second column to break the tie. Similarly, a third column can be used to break ties between first and second and so on. Here we order by `region`, then within region we order by murder rate:
 ```{r}
 murders %>% 
   arrange(region, rate) %>% 
-  head()
+  head()%>%pander
 #>           state abb    region population total  rate
 #> 1       Vermont  VT Northeast     625741     2 0.320
 #> 2 New Hampshire  NH Northeast    1316470     5 0.380
@@ -203,7 +205,7 @@ murders %>%
  
 In the code above, we have used the function `head` to avoid having the page fill up with the entire dataset. If we want to see a larger proportion, we can use the `top_n` function. This function takes a data frame as it’s first argument, the number of rows to show in the second, and the variable to filter by in the third. Here is an example of how to see the top 5 rows:
 ```{r}
-murders %>% top_n(5, rate)
+murders %>% top_n(5, rate)%>%pander
 #>                  state abb        region population total  rate
 #> 1 District of Columbia  DC         South     601723    99 16.45
 #> 2            Louisiana  LA         South    4533372   351  7.74
@@ -245,7 +247,7 @@ Let’s now explore the NHANES data.
 Hint: Use `filter` and `summarize` and use the `na.rm = TRUE` argument when computing the average and standard deviation. You can also filter the NA values using `filter`.
 ```{r}
 ref<-NHANES %>% filter(AgeDecade==" 20-29")%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))
-ref
+ref%>%pander
 ```
 2. Using a pipe, assign the average to a numeric variable `ref_avg`. Hint: Use the code similar to above and then `pull`.
 ```{r}
@@ -260,24 +262,24 @@ NHANES %>% filter(AgeDecade==" 20-29") %>% select(BPSysAve) %>% max(na.rm=TRUE)
 ```
 4. Compute the average and standard deviation for females, but for each age group separately rather than a selected decade as in question 1. Note that the age groups are defined by `AgeDecade`. Hint: rather than filtering by age and gender, filter by `Gender` and then use `group_by`.
 ```{r}
-NHANES%>%filter(Gender=="female")%>%group_by(AgeDecade)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))
+NHANES%>%filter(Gender=="female")%>%group_by(AgeDecade)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))%>%pander
 ```
 5. Repeat exercise 4 for males
 ```{r}
-NHANES%>%filter(Gender=="male")%>%group_by(AgeDecade)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))
+NHANES%>%filter(Gender=="male")%>%group_by(AgeDecade)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))%>%pander
 ```
 6. We can actually combine both summaries for exercises 4 and 5 into one line of code. This is because `group_by` permits us to group by more than one variable. Obtain one big summary table using `group_by(AgeDecade, Gender)`.
 ```{r}
-NHANES%>%group_by(AgeDecade,Gender)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))
+NHANES%>%group_by(AgeDecade,Gender)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))%>%pander
 ```
 7. For males between the ages of 40-49, compare systolic blood pressure across race as reported in the` Race1` variable. Order the resulting table from lowest to highest average systolic blood pressure.
 ```{r}
-NHANES%>%filter(Gender=="male",AgeDecade==" 40-49")%>%group_by(Race1)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))%>% arrange(average)
+NHANES%>%filter(Gender=="male",AgeDecade==" 40-49")%>%group_by(Race1)%>%summarize(average=mean(BPSysAve,na.rm=TRUE),standard_deviation=sd(BPSysAve,na.rm=TRUE))%>% arrange(average)%>%pander
 ```
 ##4.11 Tibbles
 Tidy data must be stored in data frames. We introduced the data frame in Section 2.4.1 and have been using the `murders` data frame throughout the book. In Section 4.7.3 we introduced the `group_by` function, which permits stratifying data before computing summary statistics. But where is the group information stored in the data frame?
 ```{r}
-murders %>% group_by(region)
+murders %>% group_by(region)%>%pander
 #> # A tibble: 51 x 6
 #> # Groups:   region [4]
 #>   state      abb   region population total  rate
@@ -453,7 +455,7 @@ murders %>%
     region == "South" ~ "South",
     TRUE ~ "Other")) %>%
   group_by(group) %>%
-  summarize(rate = sum(total) / sum(population) * 10^5) 
+  summarize(rate = sum(total) / sum(population) * 10^5) %>%pander
 #> # A tibble: 4 x 2
 #>   group        rate
 #>   <chr>       <dbl>
@@ -512,7 +514,7 @@ compute_s_n <- function(n){
   tibble(n = n, s_n = sum(x), s_n_2 = sum(x))
 }
 n <- 1:100
-map_df(n, compute_s_n)
+map_df(n, compute_s_n)%>%pander
 ```
 
 # Chapter 5 Importing data
@@ -537,7 +539,7 @@ A spreadsheet containing the US murders data is included as part of the dslabs p
 filename <- "murders.csv"
 dir <- system.file("extdata", package = "dslabs") 
 fullpath <- file.path(dir, filename)
-file.copy(fullpath, "murders.csv")
+file.copy(fullpath, "murders.csv",overwrite = T)
 ```
 This code does not read the data into R, it just copies a file. But once the file is copied, we can import the data with a simple line of code. Here we use the `read_csv` function from the readr package, which is part of the tidyverse.
 ```{r}
@@ -603,7 +605,7 @@ fullpath <- file.path(dir, filename)
 The final line of code we used to copy the file into our home directory used
 the function `file.copy.` This function takes two arguments: the file to copy and the name to give it in the new directory.
 ```{r}
-file.copy(fullpath, "murders.csv_")
+file.copy(fullpath, "murders.csv_",overwrite = T)
 #> [1] TRUE
 ```
 if file is copied successfully, the `file.copy` function returns `TRUE.` Note that we are giving the file the same name, `murders.csv`, but we could have named it anything. Also note that by not starting the string with a slash, R assumes this is a relative path and copies the file to the working directory.
@@ -618,7 +620,7 @@ In this section we introduce the main tidyverse data importing functions. We wil
 filename <- "murders.csv"
 dir <- system.file("extdata", package = "dslabs") 
 fullpath <- file.path(dir, filename)
-file.copy(fullpath, "murders.csv",overwrite=T)
+file.copy(fullpath, "murders.csv",overwrite = T)
 ```
 ###5.2.1 readr
 The readr library includes functions for reading data stored in text file spreadsheets into R. readr is part of the tidyverse package, or you can load it directly:
@@ -695,7 +697,7 @@ file.path(path,"life-expectancy-and-fertility-two-countries-example.csv") %>% fi
 read_csv("life-expectancy-and-fertility-two-countries-example.csv")
 
 file.path(path,"murders.csv") %>% file.copy(.,"murders.csv",overwrite=T)
-read.csv("murders.csv")
+read.csv("murders.csv")r
 
 file.path(path,"olive.csv") %>% file.copy(.,"olive.csv",overwrite=T)
 read_csv("olive.csv")
@@ -706,18 +708,13 @@ read_csv("RD-Mortality-Report_2015-18-180531.pdf")
 file.path(path,"ssa-death-probability.csv") %>% file.copy(.,"ssa-death-probability.csv",overwrite=T)
 read_csv("ssa-death-probability.csv")
 ```
-```{r}
-install.packages("pdftools")
-library(pdftools)
-```
-
 
 2. Note that the last one, the `olive` file, gives us a warning. This is because the first line of the file is missing the header for the first column. Read the help file for `read_csv` to figure out how to read in the file without reading this header. If you skip the header, you should not get this warning. Save the result to an object called `dat`.
 
 ```{r}
 read_csv("olive.csv")
 dat <- read_csv("olive.csv",skip=1,col_names=FALSE)
-dat
+dat%>%pander
 ```
 
 
@@ -781,15 +778,14 @@ x[1:10]
 ```
 Note that the tidyverse provides `read_lines`, a similarly useful function.
 
-##5.6 Text versus binary files
-
+## 5.6 Text versus binary files
 For data science purposes, files can generally be classified into two categories: text files (also known as ASCII files) and binary files. You have already worked with text files. All your R scripts are text files and so are the R markdown files used to create this book. The csv tables you have read are also text files. One big advantage of these files is that we can easily “look” at them without having to purchase any kind of special software or follow complicated instructions. Any text editor can be used to examine a text file, including freely available editors such as RStudio, Notepad, textEdit, vi, emacs, nano, and pico. To see this, try opening a csv file using the “Open file” RStudio tool. You should be able to see the content right on your editor. However, if you try to open, say, an Excel xls file, jpg or png file, you will not be able to see anything immediately useful. These are binary files. Excel files are actually compressed folders with several text files inside. But the main distinction here is that text files can be easily examined.
 
 Although R includes tools for reading widely used binary files, such as xls files, in general you will want to find data sets stored in text files. Similarly, when sharing data you want to make it available as text files as long as storage is not an issue (binary files are much more efficient at saving space on your disk). In general, plain-text formats make it easier to share data since commercial software is not required for working with the data.
 
 Extracting data from a spreadsheet stored as a text file is perhaps the easiest way to bring data from a file to an R session. Unfortunately, spreadsheets are not always available and the fact that you can look at text files does not necessarily imply that extracting data from them will be straightforward. In the Data Wrangling part of the book we learn to extract data from more complex text files such as html files.
 
-##5.7 Unicode versus ASCII
+## 5.7 Unicode versus ASCII
 
 A pitfall in data science is assuming a file is an ASCII text file when, in fact, it is something else that can look a lot like an ASCII text file: a Unicode text file.
 
@@ -811,6 +807,7 @@ No Calculations in the Raw Data Files - Excel permits you to perform calculation
 Do Not Use Font Color or Highlighting as Data - Most import functions are not able to import this information. Encode this information as a variable instead.
 Make Backups - Make regular backups of your data.
 Use Data Validation to Avoid Errors - Leverage the tools in your spreadsheet software so that the process is as error-free and repetitive-stress-injury-free as possible.
-Save the Data as Text Files - Save files for sharing in comma or tab delimited format.
+Save the Data as Text Files - Save files for sharing in comma or tab delimited format..
+
 ##5.9 Exercises
 1. Pick a measurement you can take on a regular basis. For example, your daily weight or how long it takes you to run 5 miles. Keep a spreadsheet that includes the date, the hour, the measurement, and any other informative variable you think is worth keeping. Do this for 2 weeks. Then make a plot.
