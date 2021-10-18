@@ -1,0 +1,23 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(readxl)
+```
+
+
+```{r}
+readxl::excel_sheets('C:/Users/ddw20/Documents/bsms222_160_lee/TableS2.xlsx')
+```
+
+
+```{r}
+my_table = read_excel('C:/Users/ddw20/Documents/bsms222_160_lee/TableS2.xlsx', sheet=7)
+```
+
+```{r}
+head(my_table)
+```
+
