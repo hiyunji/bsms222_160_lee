@@ -271,7 +271,15 @@ lung<-d_luad%>%filter(shortLetterCode=="TP" & cigarettes_per_day!=is.na(cigarett
 
 
 ```{r}
-lung%>% ggplot(aes(cigarettes_per_day,tumor_stage))+ geom_density() +geom_density_ridges(aes(fill=tumor_stage),alpha=0.5, scale=1.2)+
+av<-lung%>%group_by(tumor_stage)%>%summarise(average=mean(cigarettes_per_day))
+```
+
+
+```{r}
+lung%>% ggplot(aes(cigarettes_per_day,tumor_stage))+ geom_density() +geom_density_ridges(aes(fill=tumor_stage),alpha=0.5, scale=1.2,quantile_lines = T, quantile_fun = mean )+ geom_text(data = av,
+    aes(x = average, y = tumor_stage, label = round(average, 2)),
+    size = 2, nudge_x = 0.03, nudge_y = 0.35
+  )+ geom_text(aes(x=7.5,y=0.5,label="line is average of cigarettes per day"))+
   labs(x ='cigarettes_per_day', y = 'LUAD patients by Stage', title = 'LUAD and cigareettes')+ scale_fill_brewer(palette="YlOrRd")
 ```
 
