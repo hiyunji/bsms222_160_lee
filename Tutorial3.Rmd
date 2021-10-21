@@ -142,11 +142,10 @@ bind_rows(d_luad %>%
             select(type, shortLetterCode)) %>%
   count(shortLetterCode, type) %>% 
   complete(type, shortLetterCode, fill = list(n = 0)) %>%pander
-```
 
-```{r}
 #Q2: it forms a matrix of panels defined by row and column faceting variables. it automatically separates the plots by type column faceting variables and places the plots side by side.
 ```
+
 
 ## 3.2. Distribution of clinical variables
 We will plot the distribution of age at diagnosis using histogram. Few things you can check: - Is the distribution continuous? - Is it fowlloing the normal distribution? - What is the scale on the x-axis? - If the distribution is stratified, which makes it?
@@ -305,7 +304,10 @@ ggsave('plot.TCGA_LUAD.histogram_AgeOfDX.20191002.pdf', p, width = 16, height = 
 ```
 
 ```{r}
-p<-ggplot(lung, aes(cigarettes_per_day,tumor_stage))+ geom_density() +geom_density_ridges(aes(fill=tumor_stage),alpha=0.5, scale=1.2)+
+p< ggplot(lung, aes(cigarettes_per_day,tumor_stage))+ geom_density() +geom_density_ridges(aes(fill=tumor_stage),alpha=0.5, scale=1.2,quantile_lines = T, quantile_fun = mean )+ geom_text(data = av,
+    aes(x = average, y = tumor_stage, label = round(average, 2)),
+    size = 2, nudge_x = 0.03, nudge_y = 0.35
+  )+ geom_text(aes(x=7.5,y=0.5,label="line is average of cigarettes per day"))+
   labs(x ='cigarettes_per_day', y = 'LUAD patients by Stage', title = 'LUAD and cigareettes')+ scale_fill_brewer(palette="YlOrRd")
 
 ggsave('plot.LUAD_and_cigareettes.20211021.pdf',p,width = 16, height = 9)
