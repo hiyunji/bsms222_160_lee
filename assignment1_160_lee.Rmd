@@ -27,6 +27,9 @@ library(readxl)
 library(tidyverse)
 ```
 
+
+
+
 I need information about clinical features of patients, pathway of gene, and mRNA,protein log2Tumor/NAT value.
 
 ```{r}
