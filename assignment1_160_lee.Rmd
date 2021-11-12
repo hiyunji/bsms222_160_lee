@@ -146,4 +146,7 @@ Also, the genes in the Figure are not only involved in the adhesion pathway.
 There are genes that is related with other pathway(eg.NSCLC pathway) as well as adhesion pathway, so some genes are upregulated despite of their adhesion pathway.In general, as the tumor stage increases, the adhesion protein log2Tumor/NAT decreases.
 
 
+```{r}
+tinytex::install_tinytex()
+```
 
