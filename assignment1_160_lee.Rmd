@@ -174,7 +174,7 @@ In addition to the genes shown in the Figure, there are many genes participating
 Also, the genes in the Figure are not only involved in the adhesion pathway. 
 There are genes that is related with other pathway(eg.NSCLC pathway) as well as adhesion pathway, so some genes are upregulated despite of their adhesion pathway.In general, as the tumor stage increases, the adhesion protein log2Tumor/NAT decreases.
 
-##addition
+## 6. addition
 
 First, peer review pointed out that the boxplot of figure2 seems to be concentrated in the middle due to the presence of outliers and suggested to draw a larger, more dense plot by removing outliers.
 But it is not because of outliers that the box plot is concentrated in the middle. The log2 Tumor/NAT value ranges of up-regulation gene and down-regulation gene were initially different, so in order to compare the two plots together, the range of the y-axis was wide and the box was thus expressed as small. Also, if outlier data is really unnecessary, I think the number of outlier data should be very large. But the number of outliers is 0 to 5 for each gene. And looking at the plot, outliers do not seem to have much influence on the results I interpreted.
@@ -182,8 +182,6 @@ But it is not because of outliers that the box plot is concentrated in the middl
 To make the box bigger,i tried to draw plots for down-regulation gene and up-regulation gene separately and then combine them using `plot_grid`. As a result, the y-axis values of each graph were further subdivided and the box was not concentrated only in the middle, but the y-axis ranges for up-regulation gene and down-regulation gene were different, so at a glance, it seemed as if the overall log2 T/N value of down-regulation was higher than that of up-regulation.
 
 so instead of modifying the boxplot, a violin plot was added to indicate the overall distribution. I think the fact that the data were concentrated only in the middle has been resolved.
-
-
 
 
 The question that came to mind when making the figure2 plot is the down-regulation of EGFR. This is because L858R mutation and exon 13 deletion occur more in East Asia and are referred to as EGFR activating mutations in the paper. So, i expected that the EGFR protein was expressed a lot in cancer. I checked whether RNA expression of EGFR also decreased in tumors. The central dog is the basic principle of living things, but in clinical practice, there are quite a few cases where the central dogma is not followed. Current research also focused on investigating the function of non-coding RNA. As result of comparing the log2T/N values of RNA and the protein, several genes with noticeably negative correlation were found on the graph. Genes whose mean log2T/N values of RNA and protein have changed +,-sign are marked with red boxes.
@@ -234,7 +232,7 @@ d2<-merge(my_table1_S555,my_table6_S22,by='ID')%>%
 
 plot_grid(d1,d2)
 ```
-since there was absence or presence of EGFR mutation in the provided data, i wondered if ther presence or absence of mutation affected the EGFR expression. therefore, a heatmap indicating the presence of EGFR mutation was created. and there was no significant difference between the person without the mutation and the person with it. it is regrettable that we have not clearly found what makes the difference in expression between RNA and protein in EGRR
+since there was absence or presence of EGFR mutation in the provided data, i wondered if ther presence or absence of mutation affected the EGFR expression. therefore, a heatmap indicating the presence of EGFR mutation was created. and there was no significant difference between the person without the mutation and the person with it. it is regrettable that we have not clearly found what makes the difference in expression between RNA and protein in EGRR.
 
 
 ```{r}
