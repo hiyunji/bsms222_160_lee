@@ -5,6 +5,10 @@ output:
   html_notebook: default
 ---
 
+
+2019250160 biosystem
+leeyunji
+
 #Proteogenomics of Non-smoking Lung Cancer in East Asia Delinates Molecular Signatures of Pathogenesis and Progression
 
 ## 1.Introduction
@@ -13,6 +17,7 @@ This study are collected cohort from in Taiwan, representing early stage, predom
 Each gene had distinct regulation patterns during tumors progression. Especially, I focused on cell adhesion gene and DNA replication gene.
 In Figure 2I, we can see that cell adhesion protein is decreasing as the tumor stage increases(blue circle).
 ```{r}
+library(tidyverse)
 library(knitr)
 knitr::include_graphics("/Users/ddw20/Pictures/Saved Pictures/figure.jpg")
 ```
@@ -24,7 +29,6 @@ As a result, I'll check whether the actual TW cohort data shows down-regulation 
 
 ```{r}
 library(readxl)
-library(tidyverse)
 ```
 
 
@@ -43,6 +47,7 @@ my_table6_S2 = read_excel('C:/Users/ddw20/Documents/bsms222_160_lee/TableS6.xlsx
 Gene and related KEGG pathway is in `my_table3_S7(Table S3F)`.
 I want to know some genes involved in the adhesion pathway and also filter genes related to DNA replication pathway.
 so i used `filter` and `grepl`.
+
 
 ```{r}
 adhesion<-my_table3_S7 %>% filter(grepl('adhesion', `C: KEGG pathway name`))%>%count(`T: Gene name`)%>% pull(`T: Gene name`)
@@ -77,16 +82,29 @@ my_table1_S666<-my_table1_S66%>%pivot_longer(!ID,names_to="Gene",values_to="log2
 ```
 
 
+```{r}
+my_table1_S55<-my_table1_S5%>%filter(gene %in% c(adhesion,replication))%>%select(gene, my_table6_S22$ID)
+my_table1_S55<-as.data.frame(t(my_table1_S55))
+colnames(my_table1_S55)<-my_table1_S55[1,]
+my_table1_S55<-tibble::rownames_to_column(my_table1_S55, "ID")
+my_table1_S55<-my_table1_S55[-1,]
+my_table1_S555<-my_table1_S55%>%pivot_longer(!ID,names_to="Gene",values_to="Rlog2TN")%>%mutate(pathway=ifelse(Gene%in%c(replication),"DNAreplication","Adhesion"))
+```
+
+
 
 ## 4.Visualizing
 
 First, I merged `my_table1_S666(Table S1E)` and `my_table6_S22(Table S6A)` to make one data frame including patient ID, gene, pathway, protein log2 Tumor/NAT value. 
 As we know , LUAD in TW cohort is characterized by predominant female patients. so I used only female patient information to make a plot.
-Through LUAD female cohort we can see DNA replication gene(MCM3,MCM2,LIG1) is up-regulation in tumor.It is natural because tumors proliferate abnormally.
+Through LUAD female cohort we can see DNA replication gene(MCM3,MCM2,LIG1) is up-regulation in tumor.It is natural because tumors proliferate abnormally. Many expressions of DNA replication proteins used during the cell division process would have been required.
 Then, how about cell adhesion gene? most adhesion genes were down-regulated in LUAD patients except AKT, GRB2, MAPK1, PAK gene.
 Despite all being involved in the adhesion pathway,Why does this difference occur?
 AKT, GRB2, MAK1, PAK  participate in other pathway. AKT is in not only focal adhesion but also EGFR signaling, autophagy,  AMPLpathway etc. It can be seen that other proteins also participate in many different pathways. we can figure out through my_table3_S7 and paper.
-especially, in Figure 2F,  AKT, GRB2, MAPK is downstream protein of NLSCL pathway. and they cause antiapoptosis, proliferation.. 
+especially, in Figure 2F,  AKT, GRB2, MAPK is downstream protein of NLSCL pathway. and they cause antiapoptosis, proliferation.
+
+Since the log2 Tumor/NAT value for the JUN gene in some patients is NA, it is expressed in gray tiles.
+
 
 ```{r,fig.width=10}
 
@@ -96,7 +114,7 @@ merge(my_table1_S666,my_table6_S22,by='ID')%>%
   select(ID,Gene,log2TN,pathway,AngiolymphaticInvasion)%>% 
   mutate(log2TN=as.numeric(log2TN))%>%
   mutate(Gene=reorder(Gene, -log2TN)) %>%
-  filter(!is.na(AngiolymphaticInvasion))%>% 
+  filter(!is.na(AngiolymphaticInvasion))%>%
   ggplot(aes(ID,Gene,fill=log2TN))+
   geom_tile()+
   scale_fill_gradient2(high ="red",mid="white",low="blue")+
@@ -109,16 +127,23 @@ merge(my_table1_S666,my_table6_S22,by='ID')%>%
   
 ```
 
-
 I associateed angiolymphatic invasion with cell adhesion.
 Instead of classifying into tumor stages, i used angiolymphatic invasion information to compare only the presence or absence of metastasis with adhesion.
 we can see that protein log2 T/N of down-regulated adhesion genes in fist plot is decreasing when angiolymphatic invasion is "yes". 
 median protein log2 T/N of boxplot is decreased.
 ( AKT, CRB2, PAK still remain an exception; they also participate in other pathways.)
-cells are connected to ECM ,each other cell by cell-cell adhesion including adherens junctions and focal adhesions.
+cells are connected to ECM and each other cell by cell-cell adhesion including adherens junctions and focal adhesions.
 AS adhesion genes are down-regulated, tumor cells invade and migrate into blood and lymph node.
 
-```{r,fig.width=10}
+
+**peer review pointed out that the boxplot of figure2 seems to be concentrated in the middle due to the presence of outliers and suggested to draw a larger, more dense plot by removing outliers.
+But it is not because of outliers that the box plot is concentrated in the middle. The log2 Tumor/NAT value ranges of up-regulation gene and down-regulation gene were initially different, so in order to compare the two plots together, the range of the y-axis was wide and the box was thus expressed as small. Also, if outlier data is really unnecessary, I think the number of outlier data should be very large. But the number of outliers is 0 to 5 for each gene. And looking at the plot, outliers do not seem to have much influence on the results I interpreted.
+
+To make the box bigger,i tried to draw plots for down-regulation gene and up-regulation gene separately and then combine them using `plot_grid`. As a result, the y-axis values of each graph were further subdivided and the box was not concentrated only in the middle, but the y-axis ranges for up-regulation gene and down-regulation gene were different, so at a glance, it seemed as if the overall log2 T/N value of down-regulation was higher than that of up-regulation.
+
+so instead of modifying the boxplot, a violin plot was added to indicate the overall distribution. I think the fact that the data were concentrated only in the middle has been resolved.**
+
+```{r,fig.width=13}
 merge(my_table1_S666,my_table6_S22,by='ID')%>%
   filter(!is.na(log2TN))%>%
   filter(Gender=="female")%>%
@@ -127,14 +152,17 @@ merge(my_table1_S666,my_table6_S22,by='ID')%>%
   filter(!is.na(AngiolymphaticInvasion))%>% 
   filter(pathway=="Adhesion") %>% 
   mutate(regulation=ifelse(Gene%in% c("AKT2","AKT3","GRB2","MAPK1","PAK1","PAK2"),"up-regulation","down-regulation"))%>%
-  ggplot(aes(Gene,log2TN,color=AngiolymphaticInvasion))+
-  geom_boxplot()+
+  ggplot(aes(Gene,log2TN))+
+  geom_violin(aes(fill=AngiolymphaticInvasion), alpha=0.2,show.legend = FALSE)+
+  geom_boxplot(width=0.6, aes(fill=AngiolymphaticInvasion))+
   theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=1, size=8))+
   facet_grid(~regulation, scales = "free_x", space = "free_x")+
   labs(x="Adhesion gene",
        y="protein log2 T/N",
        title="Figure2.Adhesion protein expression level based on Angiolymphatic Invasion ",
-       color="Angiolymphatic \n Invasion")
+       fill="Angiolymphatic \n Invasion")
+
+
 ```
 
 ## 5. Discussion
@@ -146,8 +174,103 @@ In addition to the genes shown in the Figure, there are many genes participating
 Also, the genes in the Figure are not only involved in the adhesion pathway. 
 There are genes that is related with other pathway(eg.NSCLC pathway) as well as adhesion pathway, so some genes are upregulated despite of their adhesion pathway.In general, as the tumor stage increases, the adhesion protein log2Tumor/NAT decreases.
 
+##addition
+
+First, peer review pointed out that the boxplot of figure2 seems to be concentrated in the middle due to the presence of outliers and suggested to draw a larger, more dense plot by removing outliers.
+But it is not because of outliers that the box plot is concentrated in the middle. The log2 Tumor/NAT value ranges of up-regulation gene and down-regulation gene were initially different, so in order to compare the two plots together, the range of the y-axis was wide and the box was thus expressed as small. Also, if outlier data is really unnecessary, I think the number of outlier data should be very large. But the number of outliers is 0 to 5 for each gene. And looking at the plot, outliers do not seem to have much influence on the results I interpreted.
+
+To make the box bigger,i tried to draw plots for down-regulation gene and up-regulation gene separately and then combine them using `plot_grid`. As a result, the y-axis values of each graph were further subdivided and the box was not concentrated only in the middle, but the y-axis ranges for up-regulation gene and down-regulation gene were different, so at a glance, it seemed as if the overall log2 T/N value of down-regulation was higher than that of up-regulation.
+
+so instead of modifying the boxplot, a violin plot was added to indicate the overall distribution. I think the fact that the data were concentrated only in the middle has been resolved.
+
+
+
+
+The question that came to mind when making the figure2 plot is the down-regulation of EGFR. This is because L858R mutation and exon 13 deletion occur more in East Asia and are referred to as EGFR activating mutations in the paper. So, i expected that the EGFR protein was expressed a lot in cancer. I checked whether RNA expression of EGFR also decreased in tumors. The central dog is the basic principle of living things, but in clinical practice, there are quite a few cases where the central dogma is not followed. Current research also focused on investigating the function of non-coding RNA. As result of comparing the log2T/N values of RNA and the protein, several genes with noticeably negative correlation were found on the graph. Genes whose mean log2T/N values of RNA and protein have changed +,-sign are marked with red boxes.
 
 ```{r}
-tinytex::install_tinytex()
+d1<- merge(my_table1_S666,my_table6_S22,by='ID')%>%
+  filter(!is.na(log2TN))%>%
+  filter(Gender=="female")%>%
+  select(ID,Gene,log2TN,pathway,AngiolymphaticInvasion)%>% 
+  mutate(log2TN=as.numeric(log2TN))%>%
+  mutate(Gene=reorder(Gene, -log2TN)) %>%
+  filter(!is.na(AngiolymphaticInvasion))%>% 
+  ggplot(aes(log2TN,Gene))+
+  geom_density_ridges_gradient(aes(fill=stat(x)),quantile_lines = T, quantile_fun = mean)+
+  scale_fill_gradient2(high = "red", mid = "white", low = "blue")+
+  scale_x_continuous(limits=c(-2,2))+
+  geom_rect(xmin=-2,xmax=2,ymin="PAK2",ymax="GRB2", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-2,xmax=2,ymin="MAPK1",ymax="PRKCB", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-2,xmax=2,ymin="FLNB",ymax="PDGFRB", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-2,xmax=2,ymin="PRKCA",ymax="FLNC", color="red", lty=1, fill=NA, size=1)+
+  theme_minimal()+
+  geom_vline(xintercept=0, lty=2, color="blue")+
+  labs(x="Protein log2 T/N",
+       y="Gene",
+       title="Figure3. Protein vs RNA expression ",
+       fill="Protein \n log2 T/N")
+
+d2<-merge(my_table1_S555,my_table6_S22,by='ID')%>%
+  filter(!is.na(Rlog2TN))%>%
+  filter(Gender=="female")%>%
+  select(ID,Gene,Rlog2TN,pathway,AngiolymphaticInvasion)%>% 
+  mutate(Rlog2TN=as.numeric(Rlog2TN))%>%
+  mutate(Gene=fct_relevel(Gene,levels = c("PAK1", "MCM3",   "MCM2",   "AKT2",   "LIG1",   "PAK2",   "GRB2",   "MAPK1",  "AKT3",   "PRKCB",  "JUN",    "FLNA",   "FLNB",   "PDGFRB", "PRKCA",  "EGFR",   "FLNC") )) %>%
+  filter(!is.na(AngiolymphaticInvasion))%>% 
+  ggplot(aes(Rlog2TN,Gene))+
+  geom_density_ridges_gradient(aes(fill=stat(x)),quantile_lines = T, quantile_fun = mean)+
+  scale_fill_gradient2(high = "red", mid = "white", low = "blue")+
+  scale_x_continuous(limits=c(-5,5))+
+  geom_rect(xmin=-5.0,xmax=5.0,ymin="PAK2",ymax="GRB2", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-5.0,xmax=5.0,ymin="MAPK1",ymax="PRKCB", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-5.0,xmax=5.0,ymin="FLNB",ymax="PDGFRB", color="red", lty=1, fill=NA, size=1)+
+  geom_rect(xmin=-5.0,xmax=5.0,ymin="PRKCA",ymax="FLNC", color="red", lty=1, fill=NA, size=1)+
+  geom_vline(xintercept=0, lty=2, color="blue")+
+  theme_minimal()+
+  labs(x="RNA log2 T/N",
+       y="Gene",
+       fill="RNA \n log2 T/N")
+
+plot_grid(d1,d2)
 ```
+since there was absence or presence of EGFR mutation in the provided data, i wondered if ther presence or absence of mutation affected the EGFR expression. therefore, a heatmap indicating the presence of EGFR mutation was created. and there was no significant difference between the person without the mutation and the person with it. it is regrettable that we have not clearly found what makes the difference in expression between RNA and protein in EGRR
+
+
+```{r}
+my_table1_S5555<-my_table1_S555%>%
+  mutate(state=ifelse(pathway%in% c("DNAreplication","Adhesion"),"RNA","na"))%>%mutate(log2TN=Rlog2TN)%>%select(ID,Gene,pathway,state,log2TN)
+my_table1_S6666<-my_table1_S666%>%
+  mutate(state=ifelse(pathway%in% c("DNAreplication","Adhesion"),"Protein","na"))
+
+my_table2<-bind_rows(my_table1_S5555,my_table1_S6666)
+
+my_table3<-merge(all,my_table6_S22, by='ID')%>%
+  mutate(log2TN=as.numeric(log2TN))%>%
+  filter(!is.na(log2TN))%>%
+  filter(Gender=="female")%>%
+  select(ID, Gene, log2TN,state, pathway,L858R,exon19del,AngiolymphaticInvasion)%>%
+  mutate(group= case_when(L858R=="no"& exon19del=="no"~ "no mutation",
+                          L858R=="yes"& exon19del=="no"~ "L858R mutation",
+                          L858R=="no"& exon19del=="yes"~ "exon19 mutation",
+                          TRUE~ "both mutation"))%>%
+  mutate(log2TN=as.numeric(log2TN))%>%
+  mutate(Gene=reorder(Gene, -log2TN)) %>%
+  filter(!is.na(AngiolymphaticInvasion))
+
+d3<-my_table3%>% ggplot(aes(ID,Gene,fill=log2TN))+
+  geom_tile()+
+  theme_minimal() +
+  scale_fill_gradient2(high ="red",mid="white",low="blue")+
+  theme(axis.text.x = element_text(angle = 90,vjust = 0.5, hjust=1, size=8))+
+  facet_grid(state~., switch="both", scales = "free_y", space = "free_y")+
+  geom_xsidetile(data=my_table3,aes(y =0, xfill = group)) +
+   scale_xfill_manual(values=c("black","pink","orange","gray"))+
+    ggside(collapse = "x")+
+  labs(title="Figure4. Protein expression level VS RNA expression level ", y="Gene expression")
+d3
+  
+```
+
+
 
